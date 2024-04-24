@@ -6,7 +6,7 @@
 /*   By: kjung <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 19:51:32 by kjung             #+#    #+#             */
-/*   Updated: 2024/04/22 20:06:44 by kjung            ###   ########.fr       */
+/*   Updated: 2024/04/24 16:46:21 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,12 +172,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 //     //         break ;
 //     // }
 //     // temp = (char *)malloc(sizeof(char) * (d + 1));
-//     // ft_strlcpy(temp, result, d + 1);
+//     // ft_strlcpy(temp, result, d + 1);    // while ((line = get_next_line(fd)))
+    // {
 //     // new_line = ft_substr(result, d, ft_strlen(result));
 //     // free(result);
 //     // result = new_line;
 //     // return (temp);
 // }
+
+// void	program_done(int buff, char *result, char *temp)
+// {
+// 	if (buff == 0)
+// 	{
+// 		free(result);
+// 		free(temp);
+// 		*result = '\0';
+// 		*temp = '\0';
+// 	}
+// } kjung@c2r17s3  ~/Desktop/get_next_line  ./a.out 
 
 char    *get_next_line(int fd)
 {
@@ -196,25 +208,37 @@ char    *get_next_line(int fd)
         result = ft_strdup("");
     while (i > 0) 
     {
-        i = read(fd, a, BUFFER_SIZE);
+		// printf("a = %s\n", a);
         result = ft_strjoin(result, a);
-        if (ft_strchr(result, '\n') > -1)
+		// printf("result = %s\n", result);
+		if (ft_strchr(result, '\n') > -1)
             break ;
+		i = read(fd, a, BUFFER_SIZE);
+		a[i] = '\0';
+		// if (i < BUFFER_SIZE || i == 0)
+		// {
+		// 	printf("%s\n", a);
+		// 	break ;
+		// }
+		// printf("I : %d", i);
     }
     d = ft_strchr(result, '\n');
     if (d > -1)
     {
-        temp = ft_substr(result, 0, d);
+        temp = ft_substr(result, 0, d + 1);
         new_line = ft_substr(result, d + 1, ft_strlen(result) - d);
         free(result);
         result = new_line;
+		// printf("temp = %s\n", temp);
         return (temp);
     }
     else
     {
+		// printf("%s\n", result);
         temp = ft_strdup(result);
         free(result);
         result = NULL;
+		// printf("temp = %s\n", temp);
         return (temp);
     }
 }
@@ -230,12 +254,16 @@ int main(void)
         printf("file open fail");
         return (1);
     }
-    line = get_next_line(fd);
-     while ((line = get_next_line(fd)))
-     {
-        printf("%s\n", line);
-     }
-
+// line = get_next_line(fd);
+// printf("%s",line);
+// free(line);
+	while ((line = get_next_line(fd)))
+    {
+        printf("%s", line);
+        free(line);
+    }
+	// printf("%s", line);
+	// free(line);
     close(fd);
     return (0);
 }
