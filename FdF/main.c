@@ -1,5 +1,6 @@
 #include <unistd.h>
-#include "minilibx-linux/mlx.h"
+// #include "minilibx-linux/mlx.h"
+#include "minilibx_macos/mlx.h"
 #include <stdio.h>
 #include "fdf.h"
 
@@ -130,13 +131,14 @@ void	insert_to_point(char *line, int y)
 	{
 		point_list->xpoint = i;
 		point_list->ypoint = y;
-		if (check_comma(line[i]) > -1)
+		if (check_comma(&line[i]) > -1)
 		{
-			divided_comma = ft_split(line[i], ',');
+			divided_comma = ft_split(&line[i], ',');
 			point_list->zpoint = ft_atoi(divided_comma[0]);
 			point_list->color_point = string_to_hex(divided_comma[1]);
 		}
-		point_list->zpoint = ft_atoi(line[i]);
+		else
+			point_list->zpoint = ft_atoi(&line[i]);
 		next = (t_point_list *)malloc(sizeof(t_point_list));
 		point_list->next = next;
 		point_list = next;
@@ -210,7 +212,7 @@ int main(int argc, char *argv[])
 		line = get_next_line(fd);
 		while (line)
 		{
-			// ft_printf("%s", line);
+			ft_printf("%s", line);
 			make_two_array(line, y);
 			free(line);
 			line = get_next_line(fd);
