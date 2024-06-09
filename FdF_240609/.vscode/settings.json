@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"mlx.h": "c",
+		"fcntl.h": "c",
+		"stdlib.h": "c",
+		"libft.h": "c",
+		"unistd.h": "c",
+		"math.h": "c",
+		"fdf.h": "c"
+	}
+}
