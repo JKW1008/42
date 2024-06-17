@@ -2,23 +2,25 @@ NAME = push_swap
 
 CC = cc
 
-CFLAGS = -g  -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 
-LIB = ./Libft/libft.a \
+LIB = ./Libft/libft.a
 
 SUBDIR = ./Libft
 
 SRCS = 	main.c \
 		ps_arr_utils.c \
 		ps_check_arg.c \
+		ps_list_parcing.c \
+		ps_lst_utils.c \
 		ps_utils.c 
 
-OBJS = $(SRCS: %.c=%.o)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-%.o:%.(c)
-	$(CC) -g -O3 -c $(CFLAGS) $< -o $@
+%.o:%.c
+	$(CC) -g -c $(CFLAGS) $< -o $@
 
 $(NAME): $(OBJS)
 	make -C ./Libft
@@ -34,4 +36,4 @@ fclean:
 
 re: fclean all
 
-.PHONEY: all clean fclean re
+.PHONY: all clean fclean re

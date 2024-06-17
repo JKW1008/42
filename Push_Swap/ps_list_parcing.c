@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_utils.c                                         :+:      :+:    :+:   */
+/*   ps_list_parcing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 15:25:04 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/17 18:04:02 by kjung            ###   ########.fr       */
+/*   Created: 2024/06/17 16:32:33 by kjung             #+#    #+#             */
+/*   Updated: 2024/06/17 19:12:39 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long long	ft_atol(const char *str)
+void	parcing_list_for_char(t_lst **list_a, char **devided)
 {
+	t_lst		*next;
 	long long	result;
-	int			neg;
+	int			i;
 
-	result = 0;
-	neg = 1;
-	while (*str == '\t' || *str == '\n' || *str == '\v' \
-			|| *str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
+	i = 0;
+	while (devided[i] != NULL)
 	{
-		if (*str == '-')
-			neg *= -1;
-		str++;
+		next = (t_lst *)malloc(sizeof(t_lst));
+		result = ft_atol(devided[i]);
+		next->index = i;
+		next->data = (int)result;
+		next->next = NULL;
+		printf("%d\n", i);
+		ft_lstadd_ps_back(list_a, next);
+		i++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result * neg);
 }

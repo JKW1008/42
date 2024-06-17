@@ -6,13 +6,13 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:25:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/17 16:12:58 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/17 18:59:36 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_arguments_for_char(char *argv)
+int	check_arguments_for_char(t_lst **a_list, char *argv)
 {
 	long long		result;
 	char			**divided;
@@ -26,17 +26,16 @@ int	check_arguments_for_char(char *argv)
 		j = 0;
 		while (divided[i][j] != '\0')
 		{
-			if (!(divided[i][j] > 48 && divided[i][j] < 57))
+			if (!(divided[i][j] > '0' && divided[i][j] < '9'))
 				return (0);
 			j++;
 		}
-		printf("divded[%d] = %s\n", i, divided[i]);
-		result = atol(divided[i]);
-		printf("conversion divided = %lld\n", result);
+		result = ft_atol(divided[i]);
 		if (result < INT_MIN || result > INT_MAX)
 			return (0);
 		i++;
 	}
+	parcing_list_for_char(a_list, divided);
 	free_split(divided);
 	return (1);
 }
@@ -57,7 +56,7 @@ int	check_arguments_for_digit(char **argv)
 				return (0);
 			j++;
 		}
-		result = atol(argv[i]);
+		result = ft_atol(argv[i]);
 		if (result < INT_MIN || result > INT_MAX)
 			return (0);
 		printf("conversion divided = %lld\n", result);
@@ -66,7 +65,7 @@ int	check_arguments_for_digit(char **argv)
 	return (1);
 }
 
-int	check_arg(int argc, char **argv)
+int	check_arg(int argc, char **argv, t_lst **list_a)
 {
 	if (argc < 2)
 	{
@@ -75,7 +74,7 @@ int	check_arg(int argc, char **argv)
 	}
 	else if (argc == 2)
 	{
-		if (check_arguments_for_char(argv[1]) == 0)
+		if (check_arguments_for_char(list_a, argv[1]) == 0)
 		{
 			ft_printf("Error\n");
 			return (0);

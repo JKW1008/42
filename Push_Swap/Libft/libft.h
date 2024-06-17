@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:02:03 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/08 19:46:49 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/17 18:07:20 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,27 +76,28 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
 				void (*del)(void *));
-size_t	ft_gnl_strlen(const char *s);
-char	*ft_gnl_strdup(const char *src);
-size_t	ft_gnl_strlcat(char *dst, const char *src, size_t size);
-size_t	ft_gnl_strlcpy(char *dst, const char *src, size_t dst_size);
-char	*ft_gnl_strjoin(char const *s1, char const *s2);
-int		ft_gnl_strchr(const char *str, int c);
-char	*ft_gnl_substr(char const *s, unsigned int start, size_t len);
-char	*return_gnl_line(char **result);
-char	*read_gnl_line(char *result, int fd);
-char	*get_next_line(int fd);
-void	print_ft_putstr_fd(char *s, int *count);
-void	print_ft_putchar_fd(char c, int *count);
-void	print_ft_putnbr_fd(int n, int *count);
-void	print_ft_puthex_fd(unsigned long long pointer, int *count, const char *str);
-void	print_ft_putpointer_fd(unsigned long long pointer, int *count);
-void	print_ft_putunsignedint_fd(unsigned int n, int *count);
-void	print_lowerx(unsigned int lowercase, int *count);
-void	print_upperx(unsigned int uppercase, int *count);
-void	print_check_type(const char *c, va_list ap, int *count);
-int		ft_printf(const char *ptr, ...);
-
-
+size_t				ft_gnl_strlen(const char *s);
+char				*ft_gnl_strdup(const char *src);
+size_t				ft_gnl_strlcat(char *dst, const char *src, size_t size);
+size_t				ft_gnl_strlcpy(char *dst, const char *src, size_t dst_size);
+char				*ft_gnl_strjoin(char const *s1, char const *s2);
+int					ft_gnl_strchr(const char *str, int c);
+char				*ft_gnl_substr(char const *s, \
+unsigned int start, size_t len);
+char				*return_gnl_line(char **result);
+char				*read_gnl_line(char *result, int fd);
+char				*get_next_line(int fd);
+void				print_ft_putstr_fd(char *s, int *count);
+void				print_ft_putchar_fd(char c, int *count);
+void				print_ft_putnbr_fd(int n, int *count);
+void				print_ft_puthex_fd(unsigned long long pointer, \
+int *count, const char *str);
+void				print_ft_putpointer_fd(unsigned long long pointer, \
+int *count);
+void				print_ft_putunsignedint_fd(unsigned int n, int *count);
+void				print_lowerx(unsigned int lowercase, int *count);
+void				print_upperx(unsigned int uppercase, int *count);
+void				print_check_type(const char *c, va_list ap, int *count);
+int					ft_printf(const char *ptr, ...);
 
 #endif
