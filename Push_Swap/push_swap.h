@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/19 14:39:58 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/19 16:09:02 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_lst
 
 typedef struct s_stack
 {
+	int				size;
 	struct s_lst	*head;
 	struct s_lst	*tail;
 } t_stack;

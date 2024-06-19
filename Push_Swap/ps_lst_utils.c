@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:24:13 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/19 14:10:45 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/19 16:21:47 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	ft_lstadd_ps_back(t_stack *stack, t_lst *ne)
 		stack->tail = ne;
 		ne->next = NULL;
 	}
+	stack->size++;
 }
