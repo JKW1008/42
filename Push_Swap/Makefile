@@ -13,6 +13,7 @@ SRCS = 	main.c \
 		ps_check_arg.c \
 		ps_list_parcing.c \
 		ps_lst_utils.c \
+		ps_stack_utils.c \
 		ps_utils.c 
 
 OBJS = $(SRCS:.c=.o)

@@ -6,13 +6,13 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:25:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/17 18:59:36 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/19 14:10:02 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_arguments_for_char(t_lst **a_list, char *argv)
+int	check_arguments_for_char(t_stack *stack, char *argv)
 {
 	long long		result;
 	char			**divided;
@@ -35,12 +35,12 @@ int	check_arguments_for_char(t_lst **a_list, char *argv)
 			return (0);
 		i++;
 	}
-	parcing_list_for_char(a_list, divided);
+	parcing_list_for_char(stack, divided);
 	free_split(divided);
 	return (1);
 }
 
-int	check_arguments_for_digit(char **argv)
+int	check_arguments_for_digit(t_stack *stack, char **argv)
 {
 	long long	result;
 	int			i;
@@ -59,13 +59,13 @@ int	check_arguments_for_digit(char **argv)
 		result = ft_atol(argv[i]);
 		if (result < INT_MIN || result > INT_MAX)
 			return (0);
-		printf("conversion divided = %lld\n", result);
 		i++;
 	}
+	parcing_list_for_digit(stack, argv);
 	return (1);
 }
 
-int	check_arg(int argc, char **argv, t_lst **list_a)
+int	check_arg(int argc, char **argv, t_stack *stack)
 {
 	if (argc < 2)
 	{
@@ -74,7 +74,7 @@ int	check_arg(int argc, char **argv, t_lst **list_a)
 	}
 	else if (argc == 2)
 	{
-		if (check_arguments_for_char(list_a, argv[1]) == 0)
+		if (check_arguments_for_char(stack, argv[1]) == 0)
 		{
 			ft_printf("Error\n");
 			return (0);
@@ -82,7 +82,7 @@ int	check_arg(int argc, char **argv, t_lst **list_a)
 	}
 	else
 	{
-		if (check_arguments_for_digit(argv) == 0)
+		if (check_arguments_for_digit(stack, argv) == 0)
 		{
 			ft_printf("Error\n");
 			return (0);
