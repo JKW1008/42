@@ -1,23 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kjung <kjung@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/22 14:50:49 by kjung             #+#    #+#              #
-#    Updated: 2024/06/14 11:18:29 by kjung            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC = cc
+CFLAGS = -g
 
 NAME = fdf
-# HEADR = fdf.h
-CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
-LIB = ./Libft/libft.a \
-
-SUBDIR = ./Libft
-
 SRCS = 	fdf_calculate.c \
 		fdf_color_utils.c \
 		fdf_draw_line.c \
@@ -35,30 +19,28 @@ SRCS = 	fdf_calculate.c \
 		fdf_top_view_draw.c \
 		fdf_utils.c \
 		main.c 
+OBJS = $(SRCS:.c=.o)
 
-MLX = ./minilibx-linux/
 
-OBJS = $(SRCS:%.c=%.o)
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-%.o:%.(c)
-	$(CC) -g -I minilibx-linux -Imlx_linux -O3 -c $< -o $@
-
 $(NAME): $(OBJS)
-	@make re -C ./Libft
-	@make -C ./minilibx-linux
-	$(CC) $(CFLAGS) $(OBJS) -L$(MLX) -g -lmlx_Linux -I$(MLX) -L$(SUBDIR) $(LIB) -lXext -lX11 -lm -lz -o $(NAME)
+	@make re -C ./mlx 
+	@make re -C ./libft
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ./libft/libft.a -I. -Lmlx -lmlx -framework OpenGL -framework Appkit
+
 
 clean:
-	@make clean -C ./Libft
-	@make clean -C ./minilibx-linux
-	rm -rf $(OBJS)
+	@make clean -C ./libft
+	@rm -f $(OBJS)
 
 fclean: clean
-	@make fclean -C ./Libft
-	rm -rf $(NAME)
+	@make fclean -C ./libft
+	@rm -f $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re re_bonus dance

@@ -16,9 +16,9 @@ void	press_plus_minus(int key, t_vars *vars)
 {
 	if (!vars)
 		return ;
-	if (key == 65451 || key == 61)
+	if (key == 24)
 		adjust_scale(vars, 1.1);
-	else if (key == 65453 || key == 45)
+	else if (key ==27)
 		adjust_scale(vars, 0.9);
 }
 
@@ -26,13 +26,13 @@ void	press_arrow(int key, t_vars *vars)
 {
 	if (!vars)
 		return ;
-	if (key == 65361)
+	if (key == 123)
 		vars->offset_x -= 10;
-	else if (key == 65362)
+	else if (key == 126)
 		vars->offset_y -= 10;
-	else if (key == 65363)
+	else if (key == 124)
 		vars->offset_x += 10;
-	else if (key == 65364)
+	else if (key == 125)
 		vars->offset_y += 10;
 	redraw(vars);
 }
@@ -41,26 +41,27 @@ void	press_rotate(int key, t_vars *vars)
 {
 	if (!vars)
 		return ;
-	if (key == 120)
+	if (key == 7)
 		rotate_x(vars, M_PI / 30);
-	else if (key == 121)
+	else if (key == 16)
 		rotate_y(vars, M_PI / 30);
-	else if (key == 122)
+	else if (key == 6)
 		rotate_z(vars, M_PI / 30);
 	redraw(vars);
 }
 
 int	press_key_hook(int key, t_vars *vars)
 {
-	if (key == 65307)
+	ft_printf("key = %d\n", key);
+	if (key == 53)
 		mlx_close(vars);
-	if ((key == 65451 || key == 61) || (key == 65453 || key == 45))
+	if (key == 24 || key == 27)
 		press_plus_minus(key, vars);
-	else if (key >= 65361 && key <= 65364)
+	else if (key >= 123 && key <= 126)
 		press_arrow(key, vars);
-	else if (key >= 120 && key <= 122)
+	else if (key == 7 || key == 16 || key == 6)
 		press_rotate(key, vars);
-	else if (key == 114)
+	else if (key == 15)
 	{	
 		vars->offset_x = 0;
 		vars->offset_y = 0;
@@ -69,7 +70,7 @@ int	press_key_hook(int key, t_vars *vars)
 		reset_rotation(vars);
 		adjust_scale(vars, 0);
 	}
-	else if (key == 116)
+	else if (key == 17)
 	{
 		vars->is_top_view = 1;
 		vars->is_iso_view = 0;

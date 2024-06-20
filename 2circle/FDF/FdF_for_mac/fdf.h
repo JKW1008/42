@@ -26,11 +26,11 @@
 # endif
 
 # ifndef SCREEN_WIDTH
-#  define SCREEN_WIDTH 1920
+#  define SCREEN_WIDTH 800
 # endif
 
 # ifndef SCREEN_HEIGHT
-#  define SCREEN_HEIGHT 1080
+#  define SCREEN_HEIGHT 600
 # endif
 
 # ifndef Z_SCALE
