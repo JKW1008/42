@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:54:30 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 17:33:08 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 20:12:25 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	check_pivot(t_stack *stack)
 {
-	printf("stack size = %d\n", stack->size);
-	return ;
+	t_pivot		pivot_list;
+
+	
 }

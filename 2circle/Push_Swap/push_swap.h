@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 17:32:45 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 20:11:47 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef struct s_stack
 	struct s_lst	*head;
 	struct s_lst	*tail;
 }	t_stack;
+
+typedef struct s_pivot
+{
+	int		lowest_fivot;
+	int		middle_fivot;
+	int		highest_fivot;
+}	t_pivot;
 
 //	main.c
 int			main(int argc, char *argv[]);
