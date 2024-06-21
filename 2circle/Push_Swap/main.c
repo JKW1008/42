@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:00:25 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 14:45:27 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 17:33:29 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	main(int argc, char *argv[])
 	}
 	update_rank(&stack_a);
 	print_stack(&stack_a);
+	check_pivot(&stack_a);
 	free_list(&stack_a);
 	return (0);
 }

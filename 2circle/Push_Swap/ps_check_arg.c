@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:25:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 14:52:20 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 17:38:03 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	check_list_for_duplication(t_stack *stack)
 
 int	check_sorted(t_stack *stack)
 {
-	t_lst *cur;
-	t_lst *next;
+	t_lst	*cur;
+	t_lst	*next;
 
 	cur = stack->head;
 	while (cur != NULL)

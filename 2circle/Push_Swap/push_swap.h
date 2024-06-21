@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 14:41:33 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 17:32:45 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int			check_arguments_for_char(t_stack *stack, char *argv);
 int			check_arguments_for_digit(t_stack *stack, char **argv);
 int			check_sorted(t_stack *stack);
 int			check_arg(int argc, char **argv, t_stack *stack);
+
+//	ps_cost_check.c
+void		check_pivot(t_stack *stack);
 
 //	ps_lst_parcing.c
 void		parcing_list_for_char(t_stack *stack, char **devided);

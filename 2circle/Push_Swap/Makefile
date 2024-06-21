@@ -11,6 +11,7 @@ SUBDIR = ./Libft
 SRCS = 	main.c \
 		ps_arr_utils.c \
 		ps_check_arg.c \
+		ps_cost_check.c \
 		ps_list_parcing.c \
 		ps_lst_utils.c \
 		ps_stack_utils.c \
