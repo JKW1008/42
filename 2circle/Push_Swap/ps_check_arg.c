@@ -19,6 +19,8 @@ int	check_arguments_for_char(t_stack *stack, char *argv)
 	int				i;
 	int				j;
 
+	if (argv[0] == '\0' || argv[0] == ' ')
+		return (0);
 	divided = ft_split(argv, ' ');
 	i = 0;
 	while (divided[i] != NULL)
