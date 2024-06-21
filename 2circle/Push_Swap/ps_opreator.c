@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:41:37 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/19 16:27:02 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 14:48:24 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	rotate(t_stack *stack)
 
 void	reverse_rotate(t_stack *stack)
 {
-	t_lst 	*tmp;
+	t_lst	*tmp;
 
 	if (!stack->head || !stack->head->next)
 		return ;

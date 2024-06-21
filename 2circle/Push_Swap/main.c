@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:00:25 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/19 14:50:42 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/21 14:45:27 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	print_lst(t_lst *head)
 {
 	t_lst	*tmp;
-	t_lst	*tmp2;
 
 	tmp = head;
 	while (tmp != NULL)
@@ -24,28 +23,22 @@ void	print_lst(t_lst *head)
 		printf("data = %d\n", tmp->data);
 		tmp = tmp->next;
 	}
-	tmp = head;
-	while (tmp != NULL)
-	{
-		tmp2 = tmp;
-		tmp = tmp->next;
-		free (tmp2);
-	}
 }
 
 void	print_stack(t_stack *stack)
 {
-	printf("head index = %d, tail index = %d\n", stack->head->index, stack->tail->index);
-	printf("head data = %d, tail data = %d\n", stack->head->data, stack->tail->data);
-
 	t_lst	*tmp;
-	t_lst	*tmp2;
+
 	tmp = stack->head;
+	printf("head index = %d, tail index = %d\n", \
+	stack->head->index, stack->tail->index);
+	printf("head data = %d, tail data = %d\n", \
+	stack->head->data, stack->tail->data);
 	while (tmp != NULL)
 	{
-		tmp2 = tmp;
+		printf("value is %d, rank is %d, index is %d\n", \
+		tmp->data, tmp->rank, tmp->index);
 		tmp = tmp->next;
-		free (tmp2);
 	}
 }
 
@@ -57,6 +50,18 @@ int	main(int argc, char *argv[])
 	init_stack(&stack_a);
 	return_value = check_arg(argc, argv, &stack_a);
 	if (!return_value)
+	{
+		free_list(&stack_a);
 		return (0);
+	}
+	if (!check_list_for_duplication(&stack_a))
+	{
+		ft_printf("Error\n");
+		free_list(&stack_a);
+		return (0);
+	}
+	update_rank(&stack_a);
 	print_stack(&stack_a);
+	free_list(&stack_a);
+	return (0);
 }
