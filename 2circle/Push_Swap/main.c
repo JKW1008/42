@@ -60,6 +60,12 @@ int	main(int argc, char *argv[])
 		free_list(&stack_a);
 		return (0);
 	}
+	if (check_sorted(&stack_a))
+	{
+		ft_printf("sorted\n");
+		free_list(&stack_a);
+		return (0);
+	}
 	update_rank(&stack_a);
 	print_stack(&stack_a);
 	free_list(&stack_a);

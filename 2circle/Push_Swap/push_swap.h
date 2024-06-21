@@ -42,6 +42,7 @@ void		free_split(char **line);
 // ps_check_arg.c
 int			check_arguments_for_char(t_stack *stack, char *argv);
 int			check_arguments_for_digit(t_stack *stack, char **argv);
+int			check_sorted(t_stack *stack);
 int			check_arg(int argc, char **argv, t_stack *stack);
 
 //	ps_lst_parcing.c

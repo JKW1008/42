@@ -87,8 +87,8 @@ int	check_list_for_duplication(t_stack *stack)
 
 int	check_sorted(t_stack *stack)
 {
-	t_lst	*cur;
-	t_lst	*next;
+	t_lst *cur;
+	t_lst *next;
 
 	cur = stack->head;
 	while (cur != NULL)
@@ -96,10 +96,13 @@ int	check_sorted(t_stack *stack)
 		next = cur->next;
 		while (next != NULL)
 		{
-			
+			if (cur->data > next->data)
+				return (0);
+			next = next->next;
 		}
+		cur = cur->next;
 	}
-	
+	return (1);
 }
 
 int	check_arg(int argc, char **argv, t_stack *stack)
