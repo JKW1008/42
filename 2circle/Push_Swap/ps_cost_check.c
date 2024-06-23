@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:54:30 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 23:40:21 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/24 00:11:55 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,17 @@ void	move_to_b_for_fivot(t_stack *stack_a, t_stack *stack_b, int pivot_value)
 
 	while ((min_node = find_min_cost(stack_a, pivot_value)) != NULL)
 	{
+		// 최적의 노드를 top으로 올리기 위해 rotate 또는 reverse_rotate를 수행
 		while (stack_a->head != min_node)
 		{
-            if (min_node->index <= (stack_a->size / 2))
-            {
-                ra(stack_a);
-            }
-            else
-            {
-                rra(stack_a);
-            }
+			if (min_node->index <= (stack_a->size / 2))
+				ra(stack_a);
+			else
+				rra(stack_a);
 		}
 		pb(stack_b, stack_a);
 	}
+	// print_stack(stack_b);
 	free_list(stack_b);
 }
 
