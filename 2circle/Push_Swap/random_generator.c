@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_COUNT 100  // Number of numbers to generate
+#define NUM_COUNT 10  // Number of numbers to generate
 #define MAX_NUM 1000   // Maximum value of generated numbers
 
 int main() {

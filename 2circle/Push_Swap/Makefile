@@ -14,8 +14,13 @@ SRCS = 	main.c \
 		ps_cost_check.c \
 		ps_list_parcing.c \
 		ps_lst_utils.c \
+		ps_operator.c \
 		ps_stack_utils.c \
-		ps_utils.c 
+		ps_utils.c \
+		ps_write_operator_for_push.c \
+		ps_write_operator_for_swap.c \
+		ps_write_operator_for_rotate.c \
+		ps_write_operator_for_r_rotate.c
 
 OBJS = $(SRCS:.c=.o)
 

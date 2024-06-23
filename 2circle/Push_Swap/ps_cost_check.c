@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:54:30 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 20:23:20 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/23 20:42:03 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@ void check_pivot(t_stack *stack)
 	pivot_list.l_rank = check_rank_pivot(stack, pivot_list.lowest_pivot);
 	pivot_list.m_rank = check_rank_pivot(stack, pivot_list.middle_pivot);
 	pivot_list.h_rank = check_rank_pivot(stack, pivot_list.highest_pivot);
-
-	printf("lowest_pivot = %d\n", pivot_list.lowest_pivot);
-	printf("middle_pivot = %d\n", pivot_list.middle_pivot);
-	printf("highest_pivot = %d\n", pivot_list.highest_pivot);
-
-	printf("l_rank = %d\n", pivot_list.l_rank);
-	printf("m_rank = %d\n", pivot_list.m_rank);
-	printf("h_rank = %d\n", pivot_list.h_rank);
-
+	
 	return;
 }
