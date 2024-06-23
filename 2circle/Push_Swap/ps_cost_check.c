@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	check_rank_pivot(t_stack *stack, t_pivot *pivot_list, int pivot_value)
+int		check_rank_pivot(t_stack *stack, int pivot_value)
 {
 	t_lst	*tmp;
 
@@ -20,24 +20,31 @@ void	check_rank_pivot(t_stack *stack, t_pivot *pivot_list, int pivot_value)
 	while (tmp)
 	{
 		if (tmp->rank == pivot_value)
-			pivot_list->
+			return (tmp->rank);
 		tmp = tmp->next;
 	}
+	return (-1);
 }
 
-void	check_pivot(t_stack *stack)
+void check_pivot(t_stack *stack)
 {
 	t_pivot pivot_list;
 
-	pivot_list.lowest_fivot = stack->size / 3;
-	pivot_list.middle_fivot = stack->size / 3 * 2;
-	pivot_list.highest_fivot = stack->size;
+	pivot_list.lowest_pivot = (stack->size / 4) - 1;
+	pivot_list.middle_pivot = (stack->size / 4 * 2) - 1;
+	pivot_list.highest_pivot = (stack->size / 4 * 3) - 1;
 
-	printf("l_rank = %d\n", pivot_list.lowest_fivot);
-	printf("m_rank = %d\n", pivot_list.middle_fivot);
-	printf("h_rank = %d\n", pivot_list.highest_fivot);
+	pivot_list.l_rank = check_rank_pivot(stack, pivot_list.lowest_pivot);
+	pivot_list.m_rank = check_rank_pivot(stack, pivot_list.middle_pivot);
+	pivot_list.h_rank = check_rank_pivot(stack, pivot_list.highest_pivot);
 
-	
+	printf("lowest_pivot = %d\n", pivot_list.lowest_pivot);
+	printf("middle_pivot = %d\n", pivot_list.middle_pivot);
+	printf("highest_pivot = %d\n", pivot_list.highest_pivot);
 
-	return ;
+	printf("l_rank = %d\n", pivot_list.l_rank);
+	printf("m_rank = %d\n", pivot_list.m_rank);
+	printf("h_rank = %d\n", pivot_list.h_rank);
+
+	return;
 }

@@ -35,9 +35,9 @@ typedef struct s_stack
 
 typedef struct s_pivot
 {
-	int		lowest_fivot;
-	int		middle_fivot;
-	int		highest_fivot;
+	int		lowest_pivot;
+	int		middle_pivot;
+	int		highest_pivot;
 	int		l_rank;
 	int		m_rank;
 	int		h_rank;
@@ -56,6 +56,7 @@ int			check_sorted(t_stack *stack);
 int			check_arg(int argc, char **argv, t_stack *stack);
 
 //	ps_cost_check.c
+int			check_rank_pivot(t_stack *stack, int pivot_value);
 void		check_pivot(t_stack *stack);
 
 //	ps_lst_parcing.c

@@ -68,7 +68,6 @@ int	check_arguments_for_digit(t_stack *stack, char **argv)
 			return (0);
 		i++;
 	}
-	printf("check_arguments_for_digit complete\n");
 	parcing_list_for_digit(stack, argv);
 	return (1);
 }
@@ -79,7 +78,6 @@ int	check_list_for_duplication(t_stack *stack)
 	t_lst	*dup;
 
 	cur = stack->head;
-	int i = 0;
 	while (cur != NULL)
 	{
 		dup = cur->next;
@@ -90,7 +88,6 @@ int	check_list_for_duplication(t_stack *stack)
 			dup = dup->next;
 		}
 		cur = cur->next;
-		i++;
 	}
 	return (1);
 }
@@ -112,7 +109,6 @@ int	check_sorted(t_stack *stack)
 		}
 		cur = cur->next;
 	}
-	printf("check_sorted complete\n");
 	return (1);
 }
 
