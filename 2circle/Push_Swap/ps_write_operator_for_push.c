@@ -20,6 +20,6 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 
 void	pb(t_stack *stack_b, t_stack *stack_a)
 {
-	push(stack_b, stack_b);
+	push(stack_b, stack_a);
 	write(1, "pb", 2);
 }

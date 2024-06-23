@@ -58,6 +58,7 @@ int			check_arg(int argc, char **argv, t_stack *stack);
 //	ps_cost_check.c
 int			check_rank_pivot(t_stack *stack, int pivot_value);
 void		check_pivot(t_stack *stack);
+t_lst		*find_min_cost(t_stack* stack_a, int pivot);
 
 //	ps_lst_parcing.c
 void		parcing_list_for_char(t_stack *stack, char **devided);

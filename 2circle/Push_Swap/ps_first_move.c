@@ -14,7 +14,15 @@
 
 void	move_b(t_stack *stack_a, t_stack *stack_b, int pivot)
 {
-	int	cost;
+	t_lst	*tmp;
 
-	cost = 0;
+	tmp = stack_a->head;
+
+	while (tmp)
+	{
+		if (tmp->rank <= pivot)
+		{
+			
+		}
+	}
 }
