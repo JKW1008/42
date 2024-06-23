@@ -67,7 +67,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	update_rank(&stack_a);
-	print_stack(&stack_a);
+	// print_stack(&stack_a);
 	check_pivot(&stack_a);
 	free_list(&stack_a);
 	return (0);

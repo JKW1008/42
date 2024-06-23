@@ -38,6 +38,9 @@ typedef struct s_pivot
 	int		lowest_fivot;
 	int		middle_fivot;
 	int		highest_fivot;
+	int		l_rank;
+	int		m_rank;
+	int		h_rank;
 }	t_pivot;
 
 //	main.c
