@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 16:54:30 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 20:23:20 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/23 23:40:21 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int		check_rank_pivot(t_stack *stack, int pivot_value)
 void check_pivot(t_stack *stack)
 {
 	t_pivot pivot_list;
+	t_stack	stack_b;
 
+	init_stack(&stack_b);
 	pivot_list.lowest_pivot = (stack->size / 4) - 1;
 	pivot_list.middle_pivot = (stack->size / 4 * 2) - 1;
 	pivot_list.highest_pivot = (stack->size / 4 * 3) - 1;
@@ -37,10 +39,33 @@ void check_pivot(t_stack *stack)
 	pivot_list.l_rank = check_rank_pivot(stack, pivot_list.lowest_pivot);
 	pivot_list.m_rank = check_rank_pivot(stack, pivot_list.middle_pivot);
 	pivot_list.h_rank = check_rank_pivot(stack, pivot_list.highest_pivot);
-	
-	find_min_cost(stack, pivot_list.lowest_pivot);
-	printf("size = %d\n", stack->size);
+
+	move_to_b_for_fivot(stack, &stack_b, pivot_list.l_rank);
+	move_to_b_for_fivot(stack, &stack_b, pivot_list.m_rank);
+	move_to_b_for_fivot(stack, &stack_b, pivot_list.h_rank);
 	return;
+}
+
+void	move_to_b_for_fivot(t_stack *stack_a, t_stack *stack_b, int pivot_value)
+{
+	t_lst	*min_node;
+
+	while ((min_node = find_min_cost(stack_a, pivot_value)) != NULL)
+	{
+		while (stack_a->head != min_node)
+		{
+            if (min_node->index <= (stack_a->size / 2))
+            {
+                ra(stack_a);
+            }
+            else
+            {
+                rra(stack_a);
+            }
+		}
+		pb(stack_b, stack_a);
+	}
+	free_list(stack_b);
 }
 
 t_lst	*find_min_cost(t_stack* stack_a, int pivot)
@@ -63,14 +88,9 @@ t_lst	*find_min_cost(t_stack* stack_a, int pivot)
 			if (cost < min_cost) {
 				min_cost = cost;
 				min_node = tmp;
-				printf("min_node->index = %d\n", min_node->index);
-				printf("min_node->data = %d\n", min_node->data);
-				printf("min_node->rank = %d\n", min_node->rank);
-				printf("min_cost = %d\n", min_cost);
 			}
 		}
 		tmp = tmp->next;
 	}
-	printf("min_cost = %d\n", min_cost);
 	return min_node;
 }

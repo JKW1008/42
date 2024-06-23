@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:44:34 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 20:54:36 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/23 23:25:14 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	ra(t_stack *stack_a)
 {
 	rotate(stack_a);
-	write(1, "ra", 2);
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_stack *stack_b)
 {
 	rotate(stack_b);
-	write(1, "rb", 2);
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	write(1, "rr", 2);
+	write(1, "rr\n", 3);
 }

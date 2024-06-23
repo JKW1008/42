@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 21:00:43 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/23 23:21:06 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_pivot
 }	t_pivot;
 
 //	main.c
+void		print_stack(t_stack *stack);
 int			main(int argc, char *argv[]);
 
 //	ps_arr_utils.c
@@ -58,6 +59,7 @@ int			check_arg(int argc, char **argv, t_stack *stack);
 //	ps_cost_check.c
 int			check_rank_pivot(t_stack *stack, int pivot_value);
 void		check_pivot(t_stack *stack);
+void		move_to_b_for_fivot(t_stack *stack_a, t_stack *stack_b, int pivot_value);
 t_lst		*find_min_cost(t_stack* stack_a, int pivot);
 
 //	ps_lst_parcing.c
