@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:25:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 17:38:03 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/23 20:18:30 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,19 @@ int	check_arguments_for_char(t_stack *stack, char *argv)
 	if (argv[0] == '\0' || argv[0] == ' ')
 		return (0);
 	divided = ft_split(argv, ' ');
+	if (!divided)
+		return 0;
 	i = 0;
 	while (divided[i] != NULL)
 	{
 		j = 0;
 		while (divided[i][j] != '\0')
 		{
-			if (!(divided[i][j] > '0' && divided[i][j] < '9'))
+			if (!(divided[i][j] >= '0' && divided[i][j] <= '9'))
+			{
+				free_split(divided);
 				return (0);
+			}
 			j++;
 		}
 		result = ft_atol(divided[i]);
@@ -45,7 +50,7 @@ int	check_arguments_for_char(t_stack *stack, char *argv)
 int	check_arguments_for_digit(t_stack *stack, char **argv)
 {
 	long long	result;
-	int			i;
+	int			i; 
 	int			j;
 
 	i = 1;
@@ -85,10 +90,8 @@ int	check_list_for_duplication(t_stack *stack)
 			dup = dup->next;
 		}
 		cur = cur->next;
-		printf("i = %d\n", i);
 		i++;
 	}
-	printf("check_list_for_duplication complete\n");
 	return (1);
 }
 
