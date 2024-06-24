@@ -63,12 +63,9 @@ int			check_sorted(t_stack *stack);
 int			check_arg(int argc, char **argv, t_stack *stack);
 
 //	ps_cost_check.c
-int			check_rank_pivot(t_stack *stack, int pivot_value);
 void		min_a_sort(t_stack *stack_a);
-void		check_pivot(t_stack *stack_a, t_stack *stack_b);
-void		move_to_b_for_fivot(t_stack *stack_a, \
-t_stack *stack_b, int pivot_value);
-int			find_min_cost(t_stack *stack_a, int pivot);
+void		move_b_a_be_min(t_stack *stack_a, t_stack *stack_b);
+void		move_b(t_stack *stack_a, t_stack *stack_b);
 
 //	ps_lst_parcing.c
 void		parcing_list_for_char(t_stack *stack, char **devided);
@@ -85,10 +82,6 @@ void		push(t_stack *dst, t_stack *src);
 void		swap(t_stack *stack);
 void		rotate(t_stack *stack);
 void		reverse_rotate(t_stack *stack);
-
-//	ps_re_sort.c
-void		b_to_a(t_stack *stack_a, t_stack *stack_b, t_pivot p_lst);
-void		move_to_a_for_fivot(t_stack *stack_b, t_stack *stack_a, int pivot_value);
 
 //	ps_stack_utils.c
 void		init_stack(t_stack *stack);

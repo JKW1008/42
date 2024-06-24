@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 	}
 	update_rank(&stack_a);
 	// print_stack(&stack_a);
-	check_pivot(&stack_a, &stack_b);
+	move_b(&stack_a, &stack_b);
 	free_list(&stack_a);
 	free_list(&stack_b);
 	return (0);
