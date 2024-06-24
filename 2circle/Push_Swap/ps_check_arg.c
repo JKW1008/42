@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:25:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 20:18:30 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/24 17:06:26 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_arguments_for_char(t_stack *stack, char *argv)
 		return (0);
 	divided = ft_split(argv, ' ');
 	if (!divided)
-		return 0;
+		return (0);
 	i = 0;
 	while (divided[i] != NULL)
 	{
@@ -50,7 +50,7 @@ int	check_arguments_for_char(t_stack *stack, char *argv)
 int	check_arguments_for_digit(t_stack *stack, char **argv)
 {
 	long long	result;
-	int			i; 
+	int			i;
 	int			j;
 
 	i = 1;

@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:00:25 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/23 20:42:15 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/24 17:15:50 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,42 @@ void	print_lst(t_lst *head)
 	}
 }
 
-void	print_stack(t_stack *stack)
-{
-	t_lst	*tmp;
+// void	print_stack(t_stack *stack)
+// {
+// 	t_lst	*tmp;
 
-	tmp = stack->head;
-	printf("head index = %d, tail index = %d\n", \
-	stack->head->index, stack->tail->index);
-	printf("head data = %d, tail data = %d\n", \
-	stack->head->data, stack->tail->data);
-	while (tmp != NULL)
-	{
-		printf("value is %d, rank is %d, index is %d\n", \
-		tmp->data, tmp->rank, tmp->index);
-		tmp = tmp->next;
-	}
-}
+// 	tmp = stack->head;
+// 	printf("head index = %d, tail index = %d\n", \
+// 	stack->head->index, stack->tail->index);
+// 	printf("head data = %d, tail data = %d\n", \
+// 	stack->head->data, stack->tail->data);
+// 	while (tmp != NULL)
+// 	{
+// 		printf("value is %d, rank is %d, index is %d\n", \
+// 		tmp->data, tmp->rank, tmp->index);
+// 		tmp = tmp->next;
+// 	}
+// }
+
+// void print_stack(t_stack *stack)
+// {
+// 	t_lst *temp = stack->head;
+// 	while (temp)
+// 	{	
+// 		printf("%d ", temp->rank);
+// 		temp = temp->next;
+// 	}
+// 	printf("\n\n");
+// }
 
 int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
+	t_stack stack_b;
 	int		return_value;
 
 	init_stack(&stack_a);
+	init_stack(&stack_b);
 	return_value = check_arg(argc, argv, &stack_a);
 	if (!return_value)
 	{
@@ -68,7 +81,8 @@ int	main(int argc, char *argv[])
 	}
 	update_rank(&stack_a);
 	// print_stack(&stack_a);
-	check_pivot(&stack_a);
+	check_pivot(&stack_a, &stack_b);
 	free_list(&stack_a);
+	free_list(&stack_b);
 	return (0);
 }

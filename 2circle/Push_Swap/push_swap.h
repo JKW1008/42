@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/24 00:05:01 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/24 21:56:00 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_lst
 typedef struct s_stack
 {
 	int				size;
+	int				input_size;
 	struct s_lst	*head;
 	struct s_lst	*tail;
 }	t_stack;
@@ -50,6 +51,11 @@ int			main(int argc, char *argv[]);
 //	ps_arr_utils.c
 void		free_split(char **line);
 
+//	ps_calculate_move.c
+int			b_or_t(t_lst *node);
+int			go_t(t_lst *node);
+int			go_b(t_lst *node);
+
 // ps_check_arg.c
 int			check_arguments_for_char(t_stack *stack, char *argv);
 int			check_arguments_for_digit(t_stack *stack, char **argv);
@@ -58,9 +64,11 @@ int			check_arg(int argc, char **argv, t_stack *stack);
 
 //	ps_cost_check.c
 int			check_rank_pivot(t_stack *stack, int pivot_value);
-void		check_pivot(t_stack *stack);
-void		move_to_b_for_fivot(t_stack *stack_a, t_stack *stack_b, int pivot_value);
-t_lst		*find_min_cost(t_stack* stack_a, int pivot);
+void		min_a_sort(t_stack *stack_a);
+void		check_pivot(t_stack *stack_a, t_stack *stack_b);
+void		move_to_b_for_fivot(t_stack *stack_a, \
+t_stack *stack_b, int pivot_value);
+int			find_min_cost(t_stack *stack_a, int pivot);
 
 //	ps_lst_parcing.c
 void		parcing_list_for_char(t_stack *stack, char **devided);
@@ -78,9 +86,14 @@ void		swap(t_stack *stack);
 void		rotate(t_stack *stack);
 void		reverse_rotate(t_stack *stack);
 
+//	ps_re_sort.c
+void		b_to_a(t_stack *stack_a, t_stack *stack_b, t_pivot p_lst);
+void		move_to_a_for_fivot(t_stack *stack_b, t_stack *stack_a, int pivot_value);
+
 //	ps_stack_utils.c
 void		init_stack(t_stack *stack);
 void		update_rank(t_stack *stack);
+int			value_in_stack(int start, int end, t_stack *stack);
 
 //	ps_utils.c
 long long	ft_atol(const char *str);

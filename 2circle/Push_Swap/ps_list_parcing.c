@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:32:33 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/21 16:45:37 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/24 15:38:22 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	parcing_list_for_char(t_stack *stack, char **devided)
 		ft_lstadd_ps_back(stack, next);
 		i++;
 	}
+	stack->input_size = i;
 }
 
 void	parcing_list_for_digit(t_stack *stack, char **argv)
@@ -48,4 +49,5 @@ void	parcing_list_for_digit(t_stack *stack, char **argv)
 		ft_lstadd_ps_back(stack, next);
 		i++;
 	}
+	stack->input_size = i - 1;
 }
