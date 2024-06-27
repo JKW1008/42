@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/24 21:56:00 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/27 20:58:31 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ typedef struct s_lst
 	int				index;
 	int				rank;
 	int				data;
+	int				a_cost;
+	int				b_cost;
+	char			b_or_t;
 	struct s_lst	*prev;
 	struct s_lst	*next;
 }	t_lst;
@@ -39,10 +42,17 @@ typedef struct s_pivot
 	int		lowest_pivot;
 	int		middle_pivot;
 	int		highest_pivot;
-	int		l_rank;
-	int		m_rank;
-	int		h_rank;
 }	t_pivot;
+
+typedef struct s_recovery
+{
+	int	ra_cost;
+	int	rb_cost;
+	int rr_cost;
+	int	rra_cost;
+	int rrb_cost;
+}	t_recovery;
+
 
 //	main.c
 void		print_stack(t_stack *stack);
@@ -51,10 +61,10 @@ int			main(int argc, char *argv[]);
 //	ps_arr_utils.c
 void		free_split(char **line);
 
-//	ps_calculate_move.c
-int			b_or_t(t_lst *node);
-int			go_t(t_lst *node);
-int			go_b(t_lst *node);
+//	ps_cal_cost.c
+void		top_or_bottom(t_lst *node);
+void		input_cost(t_lst *node, int t_count, int b_count);
+void		move_a_cost(t_lst *node, t_stack *stack_a);
 
 // ps_check_arg.c
 int			check_arguments_for_char(t_stack *stack, char *argv);
@@ -82,6 +92,15 @@ void		push(t_stack *dst, t_stack *src);
 void		swap(t_stack *stack);
 void		rotate(t_stack *stack);
 void		reverse_rotate(t_stack *stack);
+
+//	ps_sort.c
+void		cal_input_size(t_stack *stack);
+void		init_in_stack_move(t_stack *stack_b, t_stack *stack_a);
+void		sort_push_for_a(t_stack *stack_a, t_stack *stack_b, t_pivot *pivot);
+void		real_sort_for_a(t_stack *stack_a, t_stack *stack_b, int pivot);
+// void		ra_for_cost(t_stack *stack_a, int cost);
+// void		recovery_sort(t_stack *stack_a, int cost);
+
 
 //	ps_stack_utils.c
 void		init_stack(t_stack *stack);

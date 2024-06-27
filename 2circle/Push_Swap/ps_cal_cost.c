@@ -1,70 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_calculate_move.c                                :+:      :+:    :+:   */
+/*   ps_cal_cost.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 16:59:07 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/24 17:15:32 by kjung            ###   ########.fr       */
+/*   Created: 2024/06/25 15:07:50 by kjung             #+#    #+#             */
+/*   Updated: 2024/06/26 21:45:18 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	b_or_t(t_lst *node)
+void	top_or_bottom(t_lst *node)
 {
 	t_lst	*top;
 	t_lst	*bot;
-	int		t_cost;
-	int		b_cost;
+	int		t_count;
+	int		b_count;
 
 	top = node;
 	bot = node;
-	t_cost = 0;
-	b_cost = 0;
+	t_count = 0;
+	b_count = 1;
 	while (top->prev)
 	{
-		t_cost++;
+		t_count++;
 		top = top->prev;
 	}
 	while (bot->next)
 	{
-		b_cost++;
+		b_count++;
 		bot = bot->next;
 	}
-	if (t_cost <= b_cost)
-		return (1);
+	input_cost(node, t_count, b_count);
+}
+
+void	input_cost(t_lst *node, int t_count, int b_count)
+{
+	if (t_count <= b_count)
+	{
+		node->b_cost = t_count;
+		node->b_or_t = 't';
+	}
 	else
-		return (0);
+	{
+		node->b_cost = b_count;
+		node->b_or_t = 'b';
+	}	
 }
 
-int	go_t(t_lst *node)
+void	move_a_cost(t_lst *node, t_stack *stack_a)
 {
-	t_lst	*top;
-	int		t_cost;
+	t_lst	*tmp;
+	int		i;
 
-	top = node;
-	t_cost = 0;
-	while (top->prev)
+	tmp = stack_a->head;
+	i = 0;
+	while(tmp)
 	{
-		t_cost++;
-		top = top->prev;
+		if (node->rank > tmp->rank)
+		{
+			i++;
+			tmp = tmp->next;
+		}
+		else
+			break ;
 	}
-	return (t_cost);
-}
-
-int	go_b(t_lst *node)
-{
-	t_lst	*bot;
-	int		b_cost;
-
-	bot = node;
-	b_cost = 1;
-	while (bot->next)
-	{
-		b_cost++;
-		bot = bot->next;
-	}
-	return (b_cost);
+	node->a_cost = i;
 }
