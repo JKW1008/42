@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_move_b.c                                        :+:      :+:    :+:   */
+/*   ps_a_to_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 16:54:30 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 21:02:01 by kjung            ###   ########.fr       */
+/*   Created: 2024/06/28 20:27:02 by kjung             #+#    #+#             */
+/*   Updated: 2024/06/28 23:32:56 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	min_a_sort(t_stack *stack_a)
 		rra(stack_a);
 		sa(stack_a);
 	}
-	else if (second < first && first < third) 
+	else if (second < first && first < third)
 		sa(stack_a);
 	else if (first < second && second > third && first > third)
 		rra(stack_a);
@@ -39,39 +39,31 @@ void	min_a_sort(t_stack *stack_a)
 		ra(stack_a);
 }
 
-void	move_b_a_be_min(t_stack *stack_a, t_stack *stack_b)
+void	a_to_b(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->size > 3)
-		pb(stack_b, stack_a);
-	min_a_sort(stack_a);
-}
-
-void	move_b(t_stack *stack_a, t_stack *stack_b)
-{
-	t_pivot	p_lst;
-	int 	i;
-	t_lst	*current;
+	t_plst	p_lst;
+	t_lst	*cur;
+	int		i;
 
 	i = stack_a->size;
-	p_lst.lowest_pivot = stack_a->size / 3;
-	p_lst.highest_pivot = (stack_a->size / 3) * 2;
-	current = stack_a->head;
-	while (i != 0 && current)
+	p_lst.l_pivot = stack_a->size / 3;
+	p_lst.h_pivot = (stack_a->size / 3) * 2;
+	cur = stack_a->head;
+	while (i != 0 && cur)
 	{
-		if (current->rank < p_lst.lowest_pivot)
+		if (cur->rank < p_lst.l_pivot)
 		{
 			pb(stack_b, stack_a);
 			rb(stack_b);
 		}
-		else if (current->rank >= p_lst.lowest_pivot && current->rank < p_lst.highest_pivot)
+		else if (cur->rank >= p_lst.l_pivot && cur->rank < p_lst.h_pivot)
 			pb(stack_b, stack_a);
-		else if (current->rank >= p_lst.highest_pivot)
+		else if (cur->rank >= p_lst.h_pivot)
 			ra(stack_a);
-		current = stack_a->head;
+		cur = stack_a->head;
 		i--;
 	}
-	move_b_a_be_min(stack_a, stack_b);
-	sort_push_for_a(stack_a, stack_b, &p_lst);
-    return ;
+	while (stack_a->size > 3)
+		pb(stack_b, stack_a);
+	min_a_sort(stack_a);
 }
-

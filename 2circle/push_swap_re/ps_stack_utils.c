@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 14:11:03 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 19:20:16 by kjung            ###   ########.fr       */
+/*   Created: 2024/06/28 19:20:42 by kjung             #+#    #+#             */
+/*   Updated: 2024/06/28 23:42:53 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,8 @@ void	update_rank(t_stack *stack)
 	return ;
 }
 
-int	value_in_stack(int start, int end, t_stack *stack)
+void	call_stack_free(t_stack *stack_a, t_stack *stack_b)
 {
-	t_lst	*tmp;
-
-	tmp = stack->head;
-	while (tmp)
-	{
-		if (start <= tmp->rank && tmp->rank < end)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
+	free_list(stack_a);
+	free_list(stack_b);
 }

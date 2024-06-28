@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_stack_utils.c                                   :+:      :+:    :+:   */
+/*   ps_stack_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 14:11:03 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 19:20:16 by kjung            ###   ########.fr       */
+/*   Created: 2024/06/28 20:15:25 by kjung             #+#    #+#             */
+/*   Updated: 2024/06/28 23:44:44 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_stack(t_stack *stack)
-{
-	stack->head = NULL;
-	stack->tail = NULL;
-	stack->size = 0;
-}
-
-void	update_rank(t_stack *stack)
+int	check_list_for_duplication(t_stack *stack)
 {
 	t_lst	*cur;
 	t_lst	*dup;
@@ -27,29 +20,34 @@ void	update_rank(t_stack *stack)
 	cur = stack->head;
 	while (cur != NULL)
 	{
-		cur->rank = 0;
-		dup = stack->head;
+		dup = cur->next;
 		while (dup != NULL)
 		{
-			if (cur->data > dup->data)
-				cur->rank += 1;
+			if (cur->data == dup->data)
+				return (0);
 			dup = dup->next;
 		}
 		cur = cur->next;
 	}
-	return ;
+	return (1);
 }
 
-int	value_in_stack(int start, int end, t_stack *stack)
+int	check_sorted(t_stack *stack)
 {
-	t_lst	*tmp;
+	t_lst	*cur;
+	t_lst	*next;
 
-	tmp = stack->head;
-	while (tmp)
+	cur = stack->head;
+	while (cur != NULL)
 	{
-		if (start <= tmp->rank && tmp->rank < end)
-			return (1);
-		tmp = tmp->next;
+		next = cur->next;
+		while (next != NULL)
+		{
+			if (cur->data > next->data)
+				return (0);
+			next = next->next;
+		}
+		cur = cur->next;
 	}
-	return (0);
+	return (1);
 }

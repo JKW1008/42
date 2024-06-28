@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 14:20:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/27 22:41:24 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/28 18:04:16 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_in_stack_move(t_stack *stack_b, t_stack *stack_a)
 void	sort_push_for_a(t_stack *stack_a, t_stack *stack_b, t_pivot *pivot)
 {
 	real_sort_for_a(stack_a, stack_b, pivot->highest_pivot);
+	real_sort_for_a(stack_a, stack_b, pivot->lowest_pivot);
 	real_sort_for_a(stack_a, stack_b, 0);
 }
 
@@ -195,7 +196,7 @@ void	real_sort_for_a(t_stack *stack_a, t_stack *stack_b, int pivot)
 		pa(stack_a, stack_b);
 		min_node = find_row_cost_node(stack_a, 0);
 		recovery_stack(stack_a, stack_b, check_move, &rc_cost);
-		stack_a_smallnode(min_node, stack_a);
+		// stack_a_smallnode(min_node, stack_a);
 	}
 }
 
