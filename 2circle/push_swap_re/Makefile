@@ -11,6 +11,8 @@ SUBDIR = ./Libft
 SRCS = 	main.c \
 		ps_a_to_b.c \
 		ps_arg_check.c \
+		ps_b_to_a.c \
+		ps_cal_cost.c \
 		ps_list_utils.c \
 		ps_list_utils2.c \
 		ps_push.c \

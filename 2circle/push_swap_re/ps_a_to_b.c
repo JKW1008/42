@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:27:02 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 23:32:56 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/29 16:11:03 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,25 @@ void	min_a_sort(t_stack *stack_a)
 		ra(stack_a);
 }
 
-void	a_to_b(t_stack *stack_a, t_stack *stack_b)
+void	a_to_b(t_stack *stack_a, t_stack *stack_b, t_plst *p_lst)
 {
-	t_plst	p_lst;
 	t_lst	*cur;
 	int		i;
 
 	i = stack_a->size;
-	p_lst.l_pivot = stack_a->size / 3;
-	p_lst.h_pivot = (stack_a->size / 3) * 2;
+	p_lst->l_pivot = stack_a->size / 3;
+	p_lst->h_pivot = (stack_a->size / 3) * 2;
 	cur = stack_a->head;
 	while (i != 0 && cur)
 	{
-		if (cur->rank < p_lst.l_pivot)
+		if (cur->rank < p_lst->l_pivot)
 		{
 			pb(stack_b, stack_a);
 			rb(stack_b);
 		}
-		else if (cur->rank >= p_lst.l_pivot && cur->rank < p_lst.h_pivot)
+		else if (cur->rank >= p_lst->l_pivot && cur->rank < p_lst->h_pivot)
 			pb(stack_b, stack_a);
-		else if (cur->rank >= p_lst.h_pivot)
+		else if (cur->rank >= p_lst->h_pivot)
 			ra(stack_a);
 		cur = stack_a->head;
 		i--;

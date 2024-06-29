@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 14:20:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 18:04:16 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/29 21:25:04 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,8 @@ void	real_sort_for_a(t_stack *stack_a, t_stack *stack_b, int pivot)
 		min_node = find_row_cost_node(stack_b, pivot);
 		check_move = min_node_go_head(stack_b, stack_a, min_node, &rc_cost);
 		pa(stack_a, stack_b);
-		min_node = find_row_cost_node(stack_a, 0);
-		recovery_stack(stack_a, stack_b, check_move, &rc_cost);
+		// min_node = find_row_cost_node(stack_a, 0);
+		// recovery_stack(stack_a, stack_b, check_move, &rc_cost);
 		// stack_a_smallnode(min_node, stack_a);
 	}
 }

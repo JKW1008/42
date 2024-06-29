@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:25:05 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 23:43:00 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/29 15:39:57 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	free_split(char **line)
 		i++;
 	}
 	free(line);
+}
+
+void	init_pivot(t_plst *p_lst)
+{
+	p_lst->l_pivot = 0;
+	p_lst->h_pivot = 0;
 }
 
 void	parcing_list_for_char(t_stack *stack, char **devided)

@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:12:15 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 23:41:36 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/29 20:49:12 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 # include "Libft/libft.h"
 # include <stdlib.h>
 # include <limits.h>
+# include <stdio.h>
 
 typedef struct s_lst
 {
 	int				index;
 	int				rank;
 	int				data;
+	int				a_cost;
+	int				b_cost;
+	char			b_or_t;
 	struct s_lst	*prev;
 	struct s_lst	*next;
 }	t_lst;
@@ -45,7 +49,7 @@ int			main(int argc, char *argv[]);
 
 //	ps_a_to_b.c
 void		min_a_sort(t_stack *stack_a);
-void		a_to_b(t_stack *stack_a, t_stack *stack_b);
+void		a_to_b(t_stack *stack_a, t_stack *stack_b, t_plst *p_lst);
 
 //	ps_arg_check.c
 int			check_arg_char_while(char **div);
@@ -54,8 +58,18 @@ int			check_arguments_for_digit(t_stack *stack, char **argv);
 int			check_arg(int argc, char **argv, t_stack *stack);
 int			check_all(int argc, char *argv[], t_stack *stack);
 
+//	ps_b_to_a.c
+void		b_to_a(t_stack *stack_a, t_stack *stack_b);
+
+//	ps_cal_cost.c
+void		input_b_cost(t_lst *node, int t_count, int b_count);
+void		cal_b_cost(t_lst *node);
+void		cal_a_cost(t_lst *node, t_stack *stack_a);
+void		cal_cost(t_stack *stack_a, t_stack *stack_b);
+
 //	ps_list_utils.c
 void		free_split(char **line);
+void		init_pivot(t_plst *p_lst);
 void		parcing_list_for_char(t_stack *stack, char **devided);
 void		parcing_list_for_digit(t_stack *stack, char **argv);
 
