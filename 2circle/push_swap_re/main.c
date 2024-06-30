@@ -6,11 +6,24 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:16:16 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/29 20:49:02 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/30 21:39:54 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	two_input_sort(t_stack *stack_a)
+{
+	if (stack_a->size == 1)
+		return ;
+	else if (stack_a->size == 2)
+	{
+		if (stack_a->head->rank > stack_a->head->next->rank)
+			sa(stack_a);
+		else
+			return ;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
@@ -24,7 +37,14 @@ int	main(int argc, char *argv[])
 	if (!check_all(argc, argv, &stack_a))
 		return (0);
 	update_rank(&stack_a);
-	a_to_b(&stack_a, &stack_b, &p_lst);
+	if (stack_a.size > 3)
+		a_to_b(&stack_a, &stack_b, &p_lst);
+	else if (stack_a.size == 3)
+		min_a_sort(&stack_a);
+	else
+		two_input_sort(&stack_a);
 	b_to_a(&stack_a, &stack_b);
+	while (stack_a.head->rank > 1)
+		ra(&stack_a);
 	call_stack_free(&stack_a, &stack_b);
 }

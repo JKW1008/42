@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:25:05 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/29 15:39:57 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/30 23:29:12 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ void	free_split(char **line)
 	i = 0;
 	if (!line)
 		return ;
-	while (line[i] != NULL)
-	{
-		free(line[i]);
-		i++;
-	}
+	while (line[i])
+		free(line[i++]);
 	free(line);
 }
 

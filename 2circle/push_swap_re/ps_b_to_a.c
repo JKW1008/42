@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:24:46 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/29 22:47:03 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/30 21:49:57 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,15 @@
 
 void	rc_node_go_a(t_stack *stack_a, t_stack *stack_b)
 {
-	int	move_cnt;
-
-	move_cnt = stack_b->head->a_cost;
 	if (stack_a->size == 3)
 	{
 		pa(stack_a, stack_b);
 		return ;
 	}
 	if (stack_a->head->rank > stack_b->head->rank)
-	{
-		if (stack_a->tail->rank > stack_b->head->rank)
-		{
-			if (stack_a->head->rank > stack_a->tail->rank)
-			{
-				while (stack_a->tail->rank > stack_b->head->rank)
-					rra(stack_a);
-				pa(stack_a, stack_b);
-			}
-			if (stack_a->head->rank < stack_a->tail->rank)
-				pa(stack_a, stack_b);
-		}
-		else if (stack_a->tail->rank < stack_b->head->rank)
-			pa(stack_a, stack_b);
-	}
+		go_a_util(stack_a, stack_b);
 	else if (stack_a->head->rank < stack_b->head->rank)
-	{
-		if (stack_a->tail->rank > stack_b->head->rank)
-		{
-			while (stack_a->head->rank < stack_b->head->rank)
-				ra(stack_a);
-			pa(stack_a, stack_b);
-		}
-		else if (stack_a->tail->rank < stack_b->head->rank)
-		{
-			if (stack_a->tail->rank > stack_a->head->rank)
-			{
-				pa(stack_a, stack_b);
-				ra(stack_a);
-			}
-			else if (stack_a->tail->rank < stack_a->head->rank)
-			{
-				while (stack_a->head->rank < stack_b->head->rank)
-					ra(stack_a);
-				pa(stack_a, stack_b);
-			}
-		}
-	}
+		go_a_util2(stack_a, stack_b);
 }
 
 void	rc_node_go_head(t_stack *stack_a, t_stack *stack_b, t_lst *node)

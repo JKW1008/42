@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:12:15 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/29 20:49:12 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/30 21:50:59 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_stack
 }	t_stack;
 
 //	main.c
+void		two_input_sort(t_stack *stack_a);
 int			main(int argc, char *argv[]);
 
 //	ps_a_to_b.c
@@ -59,6 +60,9 @@ int			check_arg(int argc, char **argv, t_stack *stack);
 int			check_all(int argc, char *argv[], t_stack *stack);
 
 //	ps_b_to_a.c
+void		rc_node_go_a(t_stack *stack_a, t_stack *stack_b);
+void		rc_node_go_head(t_stack *stack_a, t_stack *stack_b, t_lst *node);
+void		find_rc_node(t_stack *stack_a, t_stack *stack_b);
 void		b_to_a(t_stack *stack_a, t_stack *stack_b);
 
 //	ps_cal_cost.c
@@ -66,6 +70,15 @@ void		input_b_cost(t_lst *node, int t_count, int b_count);
 void		cal_b_cost(t_lst *node);
 void		cal_a_cost(t_lst *node, t_stack *stack_a);
 void		cal_cost(t_stack *stack_a, t_stack *stack_b);
+
+//	ps_find_node.c
+int			find_lower(t_stack *stack_a, t_stack *stack_b);
+int			find_bigger(t_stack *stack_a, t_stack *stack_b);
+
+//	ps_go_a_utils.c
+void		go_a_util(t_stack *stack_a, t_stack *stack_b);
+void		go_a_util2(t_stack *stack_a, t_stack *stack_b);
+void		go_a_util3(t_stack *stack_a, t_stack *stack_b);
 
 //	ps_list_utils.c
 void		free_split(char **line);

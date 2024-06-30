@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 20:27:02 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/29 16:11:03 by kjung            ###   ########.fr       */
+/*   Updated: 2024/06/30 21:35:26 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	a_to_b(t_stack *stack_a, t_stack *stack_b, t_plst *p_lst)
 	p_lst->l_pivot = stack_a->size / 3;
 	p_lst->h_pivot = (stack_a->size / 3) * 2;
 	cur = stack_a->head;
-	while (i != 0 && cur)
+	while (i != 0 && cur && stack_a->size > 3)
 	{
 		if (cur->rank < p_lst->l_pivot)
 		{
