@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:25:05 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/30 23:29:12 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/01 21:07:51 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	parcing_list_for_char(t_stack *stack, char **devided)
 	while (devided[i] != NULL)
 	{
 		next = (t_lst *)malloc(sizeof(t_lst));
+		if (!next)
+		{
+			free_list(stack);
+			exit(1);
+		}
 		result = ft_atol(devided[i]);
 		next->index = i;
 		next->data = (int)result;
@@ -60,6 +65,11 @@ void	parcing_list_for_digit(t_stack *stack, char **argv)
 	while (argv[i] != NULL)
 	{
 		next = (t_lst *)malloc(sizeof(t_lst));
+		if (!next)
+		{
+			free_list(stack);
+			exit(1);
+		}
 		result = ft_atol(argv[i]);
 		next->index = i - 1;
 		next->data = (int)result;

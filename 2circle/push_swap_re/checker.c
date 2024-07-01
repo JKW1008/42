@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:51:53 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/01 20:58:51 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/01 21:09:27 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_strcmp(const char *str1, const char *str2)
 	}
 	return (0);
 }
-
 
 void	do_op_r_rr(char *str, t_stack *stack_a, t_stack *stack_b)
 {
@@ -97,8 +96,7 @@ void	input_operator(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
