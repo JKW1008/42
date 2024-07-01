@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:26:49 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/30 23:13:36 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/01 19:04:06 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ft_error(long long neg, long long result)
 	{
 		if (result * neg < -2147483648)
 		{
-			printf("result == %lld\n", result);
-			ft_printf("HError\n");
+			ft_printf("Error\n");
 			exit (1);
 		}
 	}

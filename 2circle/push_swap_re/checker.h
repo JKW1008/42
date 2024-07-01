@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 17:19:46 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/01 19:53:26 by kjung            ###   ########.fr       */
+/*   Created: 2024/07/01 19:04:29 by kjung             #+#    #+#             */
+/*   Updated: 2024/07/01 20:31:55 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-int	ft_strncmp(const char *str1, const char *str2, size_t num)
-{
-	unsigned char	*st1;
-	unsigned char	*st2;
+# include <unistd.h>
+# include "push_swap.h"
 
-	st1 = (unsigned char *)str1;
-	st2 = (unsigned char *)str2;
-	while ((*st1 || *st2) && num-- > 0)
-	{
-		if (*st1 != *st2)
-			return (*st1 - *st2);
-		st1++;
-		st2++;
-	}
-	return (0);
-}
+#endif

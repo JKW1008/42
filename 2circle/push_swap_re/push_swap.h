@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:12:15 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/30 21:50:59 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/01 19:38:35 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "Libft/libft.h"
 # include <stdlib.h>
 # include <limits.h>
-# include <stdio.h>
 
 typedef struct s_lst
 {
@@ -46,7 +45,6 @@ typedef struct s_stack
 
 //	main.c
 void		two_input_sort(t_stack *stack_a);
-int			main(int argc, char *argv[]);
 
 //	ps_a_to_b.c
 void		min_a_sort(t_stack *stack_a);

@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:22:40 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/30 23:40:46 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/01 19:03:48 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_arg_char_while(char **div)
 		{
 			if (!(div[i][j] >= '0' && div[i][j] <= '9'))
 			{
-				printf("Error\n");
+				ft_printf("Error\n");
 				return (0);
 			}
 			j++;
