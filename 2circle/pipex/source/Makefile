@@ -2,7 +2,7 @@ NAME = pipex
 
 CC = cc
 
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 
 LIB = ./Libft/libft.a
 
@@ -15,7 +15,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-%.o:%.cc
+%.o:%.c
 	$(CC) -g -c $(CFLAGS) $< -o $@
 
 $(NAME): $(OBJS)
@@ -28,7 +28,7 @@ clean:
 
 fclean:
 	make fclean -C ./Libft
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(OBJS)
 
 re: fclean all
 

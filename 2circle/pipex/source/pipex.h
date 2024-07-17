@@ -20,7 +20,9 @@
 # include <stdio.h>
 # include <string.h>
 # include <sys/wait.h>
-# include <wait.h>
+// # include <wait.h>
+
+void	child_process(char **envp, char *cmd, int fd, char *argv, int *pipe);
 
 char	*find_path(char **envp, char *str);
 

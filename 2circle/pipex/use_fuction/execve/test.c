@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<unistd.h>
 int main(int argc, char *args[], char **envp)
 {
 	char **argv;
@@ -8,5 +9,5 @@ int main(int argc, char *args[], char **envp)
 	argv[1] = "-al";
 	argv[2] = "/";
 	argv[3] = NULL;
-	execve("/usr/bin/ls", argv, envp);
+	execve("/bin/ls", argv, envp);
 }

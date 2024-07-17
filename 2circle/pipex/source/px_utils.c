@@ -21,15 +21,8 @@ char	*find_path(char **envp, char *str)
 	i = 0;
 	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
 		i++;
-	printf("%s\n", envp[i]);
 	divided = ft_split(envp[i], '=');
-	printf("divided 1 = %s\n", divided[0]);
-	printf("divided 2 = %s\n", divided[1]);
 	split = ft_split(divided[1], ':');
-	for (int i = 0; split[i]; i++)
-	{
-		printf("split[%d] = %s\n", i, split[i]);
-	}
 	char	*file_name;
 	for (int i = 0; split[i]; i++)
 	{
