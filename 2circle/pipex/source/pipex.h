@@ -6,12 +6,12 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:26:49 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/16 17:42:57 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/23 16:23:12 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPE_X_H
-# define PIPE_X_H
+#ifndef PIPEX_H
+# define PIPEX_H
 
 # include "Libft/libft.h"
 # include <fcntl.h>
@@ -20,10 +20,30 @@
 # include <stdio.h>
 # include <string.h>
 # include <sys/wait.h>
-// # include <wait.h>
+# include <errno.h>
 
-void	child_process(char **envp, char *cmd, int fd, char *argv, int *pipe);
+typedef struct s_data
+{
+	char	**envp;
+	char	**argv;
+	pid_t	*pid;
+}	t_data;
 
+//	pipex.c
+void	child_process(t_data *str, int *pipe);
+void	parent_process(t_data *str, int *pipe);
+void	do_work2(t_data *str, int *pipe_fd, pid_t *pid);
+void	do_work(t_data	*str, int *pipe_fd);
+int		main(int argc, char **argv, char **envp);
+
+//	px_utils.c
+void	init_struct(t_data *str, char **argv, char **evnp, pid_t *pid);
+void	free_split(char **str);
+char	*check_access(char *split, char *str);
+char	*fp_while(char **split, char *str);
 char	*find_path(char **envp, char *str);
+
+//	px_error.c
+void	px_error(char *argv);
 
 #endif

@@ -8,8 +8,9 @@ LIB = ./Libft/libft.a
 
 SUBDIR = ./Libft
 
-SRCS =	main.c \
-		px_utils.c
+SRCS =	pipex.c \
+		px_utils.c \
+		px_error.c
 
 OBJS = $(SRCS:.c=.o)
 
