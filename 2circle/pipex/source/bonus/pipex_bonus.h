@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_utils.c                                         :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 16:26:19 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/23 16:36:32 by kjung            ###   ########.fr       */
+/*   Created: 2024/07/20 13:57:00 by kjung             #+#    #+#             */
+/*   Updated: 2024/07/20 13:58:35 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-#include "../pipex.h";
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
-int	open_file(char *file, int in_or_out)
-{
-	int	ret;
+# include "../Libft/libft.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <sys/wait.h>
 
-	if (in_or_out == 0)
-		ret = open(file, O_RDONLY, 0777);
-	if (in_or_out == 1)
-		ret = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777)
-}
+//  px_utils_bonus.c
+int	open_file(char *file, int in_or_out);
+
+#endif
