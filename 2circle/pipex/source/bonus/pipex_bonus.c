@@ -20,18 +20,7 @@ void	exec(char *cmd, char **env)
 
 	s_cmd = ft_split(cmd, ' ');
 	path = find_path(env, s_cmd[0]);
-	if (!s_cmd || !path)
-	{
-		ft_printf("command not found: %s\n", s_cmd[0]);
-		exit(0);
-	}
-	if (execve(path, s_cmd, env) == -1)
-	{
-		ft_putstr_fd("command not found: ", 2);
-		ft_putendl_fd(s_cmd[0], 2);
-		free_split(s_cmd);
-		exit(0);
-	}
+	execve(path, s_cmd, env);
 }
 
 void	do_work3(char *cmd, char **env, pid_t *pid, int *p_fd)
@@ -43,7 +32,7 @@ void	do_work3(char *cmd, char **env, pid_t *pid, int *p_fd)
 	else if (*pid == 0)
 	{
 		close(p_fd[0]);
-		if (dup2(p_fd[1], STDOUT_FILENO) == -1)
+		if (dup2(p_fd[1], 1) == -1)
 			px_error("dup2");
 		close(p_fd[1]);
 		exec(cmd, env);
@@ -61,7 +50,7 @@ void	do_pipe2(int *p_fd, int is_last)
 	if (!is_last)
 	{
 		close(p_fd[0]);
-		if (dup2(p_fd[1], STDOUT_FILENO) == -1)
+		if (dup2(p_fd[1], 1) == -1)
 			px_error("dup2");
 		close(p_fd[1]);
 	}
@@ -72,7 +61,7 @@ void	do_pipe3(int *p_fd, int is_last)
 	if (!is_last)
 	{
 		close(p_fd[1]);
-		if (dup2(p_fd[0], STDIN_FILENO) == -1)
+		if (dup2(p_fd[0], 0) == -1)
 			px_error("dup2");
 		close(p_fd[0]);
 	}
@@ -82,6 +71,7 @@ void	do_pipe(char *cmd, char **env, int *p_fd, int is_last)
 {
 	pid_t	pid;
 
+	check_cmd(cmd, env);
 	if (pipe(p_fd) == -1)
 		px_error("pipe");
 	pid = fork();

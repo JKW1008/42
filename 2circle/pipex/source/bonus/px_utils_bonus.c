@@ -83,3 +83,22 @@ void	here_doc(char **av)
 	}
 }
 
+void	check_cmd(char *cmd, char **env)
+{
+	char	**s_cmd;
+	char	*path;
+
+	if (!cmd)
+		return ;
+	s_cmd = ft_split(cmd, ' ');
+	path = find_path(env, s_cmd[0]);
+	if (!s_cmd || !s_cmd[0] || !path)
+	{
+		ft_printf("command not found: %s\n", cmd);
+		free_split(s_cmd);
+		free(path);
+		return ;
+	}
+	free_split(s_cmd);
+	free(path);
+}

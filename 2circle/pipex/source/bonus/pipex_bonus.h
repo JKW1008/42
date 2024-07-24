@@ -43,5 +43,6 @@ int		open_file(char *file, int in_or_out);
 int		ft_strcmp(const char *str1, const char *str2);
 void	here_doc_put_in(char **av, int *p_fd);
 void	here_doc(char **av);
+void	check_cmd(char *cmd, char **env);
 
 #endif

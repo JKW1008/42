@@ -43,7 +43,6 @@ char	*check_access(char *split, char *str)
 	if (!tmp)
 		return (NULL);
 	filename = ft_strjoin(tmp, str);
-	printf("%s\n", filename);
 	free(tmp);
 	if (!filename)
 		return (NULL);
@@ -55,19 +54,25 @@ char	*check_access(char *split, char *str)
 	return (NULL);
 }
 
-char	*fp_while(char **split, char *str)
+char	*fp_while(char **divided, char *str)
 {
 	int		i;
 	char	*res;
+	char	**split;
 
 	i = 0;
+	split = ft_split(divided[1], ':');
 	while (split[i])
 	{
 		res = check_access(split[i], str);
 		if (res != NULL)
+		{
+			free_split(split);
 			return (res);
+		}
 		i++;
 	}
+	free_split(split);
 	return (NULL);
 }
 
@@ -75,25 +80,27 @@ char	*find_path(char **envp, char *str)
 {
 	int		i;
 	char	**divided;
-	char	**split;
 	char	*res;
 
 	i = 0;
-	printf("%s", str);
-	if (access(str, F_OK | X_OK) == 0)
-		return (str);
+	if (!str || str[0] == '\0')
+		return (NULL);
+	if (str[0] == '/')
+	{
+		if (access(str, F_OK | X_OK) == 0)
+			return (str);
+		else
+			return (NULL);
+	}
 	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
 		i++;
 	divided = ft_split(envp[i], '=');
-	split = ft_split(divided[1], ':');
-	res = fp_while(split, str);
+	res = fp_while(divided, str);
 	if (res != NULL)
 	{
 		free_split(divided);
-		free_split(split);
 		return (res);
 	}
 	free_split(divided);
-	free_split(split);
 	return (NULL);
 }

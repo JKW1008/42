@@ -21,7 +21,7 @@ void	child_process(t_data *str, int *pipe_fd)
 	cmd = ft_split(str->argv[2], ' ');
 	path = find_path(str->envp, cmd[0]);
 	fd = open(str->argv[1], O_RDONLY);
-	if (!cmd || !path)
+	if (!cmd || !cmd[0] || !path)
 	{
 		ft_printf("command not found: %s\n", str->argv[2]);
 		exit(0);
