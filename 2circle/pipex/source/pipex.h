@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:26:49 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/23 16:23:12 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/24 23:49:01 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	child_process(t_data *str, int *pipe);
 void	parent_process(t_data *str, int *pipe);
 void	do_work2(t_data *str, int *pipe_fd, pid_t *pid);
 void	do_work(t_data	*str, int *pipe_fd);
-int		main(int argc, char **argv, char **envp);
 
 //	px_utils.c
 void	init_struct(t_data *str, char **argv, char **evnp, pid_t *pid);
@@ -45,5 +44,6 @@ char	*find_path(char **envp, char *str);
 
 //	px_error.c
 void	px_error(char *argv);
+void	file_check(char **av, int ac);
 
 #endif

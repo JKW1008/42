@@ -5,13 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 16:26:19 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/24 20:47:07 by kjung            ###   ########.fr       */
+/*   Created: 2024/07/24 21:22:42 by kjung             #+#    #+#             */
+/*   Updated: 2024/07/24 22:28:39 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 #include "../pipex.h"
+
+int	ft_strcmp(const char *str1, const char *str2)
+{
+	unsigned char	*st1;
+	unsigned char	*st2;
+
+	st1 = (unsigned char *)str1;
+	st2 = (unsigned char *)str2;
+	while (*st1 || *st2)
+	{
+		if (*st1 != *st2)
+			return (*st1 - *st2);
+		st1++;
+		st2++;
+	}
+	return (0);
+}
 
 int	open_file(char *file, int in_or_out)
 {
@@ -28,70 +45,41 @@ int	open_file(char *file, int in_or_out)
 	return (ret);
 }
 
-void	dodo(t_pbdata *data)
+void	here_doc_put_in(char **av, int *p_fd)
 {
-	int	i;
-	int	j;
-	int	p_fd[2];
+	char	*ret;
 
-	i = data->i;
-	j = 0;
-	while (i < data->argc - 2)
+	close(p_fd[0]);
+	while (1)
 	{
-		data->index = j;
-		do_pipe(data->argv[i++], data, &data->pid[j], p_fd);
-		j++;
+		ret = get_next_line(0);
+		if (ft_strncmp(ret, av[2], ft_strlen(av[2])) == 0)
+		{
+			free(ret);
+			exit(0);
+		}
+		ft_putstr_fd(ret, p_fd[1]);
+		free(ret);
 	}
 }
 
-void	after_dodo(int out_fd, t_pbdata *data)
+void	here_doc(char **av)
 {
+	int		p_fd[2];
 	pid_t	pid;
 
+	if (pipe(p_fd) == -1)
+		exit(0);
 	pid = fork();
 	if (pid == -1)
-		px_error(NULL);
+		exit(0);
 	if (!pid)
-	{
-		dup2(out_fd, 1);
-		close(out_fd);
-		exec(data->argv[data->argc - 2], data->envp);
-	}
+		here_doc_put_in(av, p_fd);
 	else
 	{
-		close(out_fd);
-		if (data->i < data->argc - 3)
-		{
-			data->pid[data->i++] = pid;
-			while (data->i < data->argc - 3)
-				waitpid(data->pid[data->i++], NULL, 0);
-		}
-		waitpid(pid, NULL, 0);
+		close(p_fd[1]);
+		dup2(p_fd[0], 0);
+		wait(NULL);
 	}
 }
 
-int	check_here_doc(char **av, int ac, int *out, int *in)
-{
-	int	i;
-
-	i = 0;
-	if (ac < 5)
-		px_error(NULL);
-	if (ft_strncmp(av[1], "here_doc", ft_strlen(av[2])) == 0)
-	{
-		if (ac < 6)
-			px_error(NULL);
-		i = 3;
-		*out = open_file(av[ac - 1], 2);
-		here_doc(av);
-	}
-	else
-	{
-		i = 2;
-		*in = open_file(av[1], 0);
-		*out = open_file(av[ac - 1], 1);
-		dup2(*in, 0);
-		close(*in);
-	}
-	return (i);
-}

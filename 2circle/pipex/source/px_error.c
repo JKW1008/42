@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:42:45 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/23 14:55:05 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/24 23:57:16 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,12 @@ void	px_error(char *argv)
 	else if (errno == 127)
 		perror(argv);
 	exit(1);
+}
+
+void	file_check(char **av, int ac)
+{
+	if (access(av[1], F_OK) == -1 || access(av[1], R_OK) == -1)
+		perror(av[1]);
+	if (access(av[ac - 1], W_OK) == -1)
+		perror(av[ac - 1]);
 }

@@ -15,7 +15,6 @@ SRCS =	pipex.c \
 
 B_SRCS =	./bonus/pipex_bonus.c \
 			./bonus/px_utils_bonus.c \
-			./bonus/px_utils2_bonus.c \
 			px_utils.c \
 			px_error.c
 

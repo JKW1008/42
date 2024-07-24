@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:30:02 by kiung             #+#    #+#             */
-/*   Updated: 2024/07/20 13:33:31 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/25 00:12:43 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,14 @@ char	*check_access(char *split, char *str)
 	if (!tmp)
 		return (NULL);
 	filename = ft_strjoin(tmp, str);
+	printf("%s\n", filename);
 	free(tmp);
 	if (!filename)
 		return (NULL);
 	if (access(filename, F_OK | X_OK) == 0)
 		return (filename);
+	else
+		return (NULL);
 	free(filename);
 	return (NULL);
 }
@@ -76,6 +79,7 @@ char	*find_path(char **envp, char *str)
 	char	*res;
 
 	i = 0;
+	printf("%s", str);
 	if (access(str, F_OK | X_OK) == 0)
 		return (str);
 	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
