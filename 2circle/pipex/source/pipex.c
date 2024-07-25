@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 14:54:30 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/24 23:57:45 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/25 23:10:00 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,11 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (access(argv[1], R_OK) == -1)
 			perror(argv[1]);
+		if (access(argv[argc - 1], F_OK) == 0)
+		{
+			if (access(argv[argc - 1], W_OK) == -1)
+				ft_printf("%s: Permission denied\n", argv[argc - 1]);
+		}
 		init_struct(&str, argv, envp, &pid);
 		do_work(&str, pipe_fd);
 	}

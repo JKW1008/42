@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:30:02 by kiung             #+#    #+#             */
-/*   Updated: 2024/07/25 00:12:43 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/25 23:10:04 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ char	*check_access(char *split, char *str)
 	if (access(filename, F_OK | X_OK) == 0)
 		return (filename);
 	else
+	{
+		free(filename);
 		return (NULL);
-	free(filename);
-	return (NULL);
+	}
 }
 
 char	*fp_while(char **divided, char *str)
@@ -72,6 +73,12 @@ char	*fp_while(char **divided, char *str)
 		}
 		i++;
 	}
+	res = check_access(".", str);
+	if (res != NULL)
+	{
+		free_split(split);
+		return (res);
+	}
 	free_split(split);
 	return (NULL);
 }
@@ -85,13 +92,9 @@ char	*find_path(char **envp, char *str)
 	i = 0;
 	if (!str || str[0] == '\0')
 		return (NULL);
-	if (str[0] == '/')
-	{
-		if (access(str, F_OK | X_OK) == 0)
-			return (str);
-		else
-			return (NULL);
-	}
+	res = check_absolute_or_home_path(str);
+	if (res)
+		return (res);
 	while (ft_strnstr(envp[i], "PATH=", 5) == NULL)
 		i++;
 	divided = ft_split(envp[i], '=');

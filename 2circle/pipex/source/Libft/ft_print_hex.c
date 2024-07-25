@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjung <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:36:50 by kjung             #+#    #+#             */
-/*   Updated: 2024/04/22 18:08:09 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/25 22:16:50 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	print_ft_puthex_fd(unsigned long long pointer, int *count, const char *str)
+void	print_ft_puthex_fd(unsigned long long pointer, \
+int *count, const char *str)
 {
 	unsigned int		i;
 	unsigned long long	t;

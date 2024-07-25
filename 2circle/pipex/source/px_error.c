@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:42:45 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/24 23:57:16 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/25 22:47:54 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,27 @@ void	px_error(char *argv)
 	exit(1);
 }
 
-void	file_check(char **av, int ac)
+char	*check_absolute_or_home_path(char *str)
 {
-	if (access(av[1], F_OK) == -1 || access(av[1], R_OK) == -1)
-		perror(av[1]);
-	if (access(av[ac - 1], W_OK) == -1)
-		perror(av[ac - 1]);
+	char	*home_path;
+	char	*res;
+
+	if (str[0] == '/' || ft_strncmp(str, "./", 2) == 0)
+		res = ft_strdup(str);
+	else if (ft_strncmp(str, "~/", 2) == 0)
+	{
+		home_path = getenv("HOME");
+		if (!home_path)
+			return (NULL);
+		res = ft_strjoin(home_path, str + 1);
+	}
+	else
+		return (NULL);
+	if (access(res, F_OK | X_OK) == 0)
+		return (res);
+	else
+	{
+		free(res);
+		return (NULL);
+	}
 }

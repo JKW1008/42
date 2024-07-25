@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:26:49 by kjung             #+#    #+#             */
-/*   Updated: 2024/07/24 23:49:01 by kjung            ###   ########.fr       */
+/*   Updated: 2024/07/25 22:44:41 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	free_split(char **str);
 char	*check_access(char *split, char *str);
 char	*fp_while(char **split, char *str);
 char	*find_path(char **envp, char *str);
+char	*check_absolute_or_home_path(char *str);
 
 //	px_error.c
 void	px_error(char *argv);
-void	file_check(char **av, int ac);
 
 #endif
