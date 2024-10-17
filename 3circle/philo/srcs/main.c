@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 21:04:15 by kjung             #+#    #+#             */
-/*   Updated: 2024/09/24 22:53:18 by kjung            ###   ########.fr       */
+/*   Updated: 2024/10/18 01:48:40 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ int	main(int ac, char **av)
 	memset(&arg, 0, sizeof(t_arg));
 	init_arg(&arg, av, ac);
 	init_philo(&philo, &arg);
+	philo_start(&arg, philo);
 }

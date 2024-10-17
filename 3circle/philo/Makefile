@@ -10,7 +10,8 @@ OBJS_DIR = ./objs
 SRCS = 	utils/ph_atoi.c \
 		utils/ph_char_utils.c \
 		utils/ph_struct_utils.c \
-		main.c
+		main.c \
+		philo.c
 
 SRCS := $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS := $(patsubst $(SRCS_DIR)/%.c,$(OBJS_DIR)/%.o,$(SRCS))
