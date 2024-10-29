@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjung <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 19:19:33 by kjung             #+#    #+#             */
-/*   Updated: 2024/04/20 18:29:13 by kjung            ###   ########.fr       */
+/*   Updated: 2024/10/25 20:15:34 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 void	check_type(const char *c, va_list ap, int *count)
 {
 	if (*c == 's')

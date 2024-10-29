@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:12:00 by kjung             #+#    #+#             */
-/*   Updated: 2024/10/18 01:53:10 by kjung            ###   ########.fr       */
+/*   Updated: 2024/10/25 19:27:54 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,43 @@
 # define PHILO_H
 
 # include <stdio.h>
-# include <memory.h>
 # include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
 # include <pthread.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include <string.h>
+# include <limits.h>
 
 typedef struct s_arg
 {
-	int	number;
-	unsigned int	life_time;
-	unsigned int	eat_time;
-	unsigned int	sleep_time;
-	unsigned int	eat_cnt;
-	long long		start_time;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
-	int				finish;
-	int				finish_eat;
-	pthread_mutex_t	print;
-	pthread_mutex_t	*forks;
-}	t_arg;
+    int             number;
+    long long       time_to_die;
+    long long       time_to_eat;
+    long long       time_to_sleep;
+    long long       eat_cnt;
+    long long       start_time;
+    int             finish;
+    int             finish_eat;
+    pthread_mutex_t print;
+    pthread_mutex_t *forks;
+    pthread_mutex_t finish_mutex;
+    pthread_mutex_t eat_mutex;
+}   t_arg;
+
 
 typedef struct s_philo
 {
-	t_arg			*arg;
-	unsigned int	id;
-	unsigned int	left;
-	unsigned int	right;
-	unsigned int	last_eat_time;
-	unsigned int	eat_cnt;
-	pthread_t		thread;
-}	t_philo;
-
+    t_arg       *arg;
+    int         id;
+    int         left;
+    int         right;
+    long long   last_eat_time;
+    long long   eat_cnt;
+    pthread_t   thread;
+}   t_philo;
 
 //	utils
-void	init_arg(t_arg *arg, char **av, int ac);
+int    init_arg(t_arg *arg, char **av, int ac);
 void	init_philo(t_philo **philo, t_arg *arg);
 int		philo_start(t_arg *arg, t_philo *philo);
 

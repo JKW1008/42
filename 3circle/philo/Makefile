@@ -1,6 +1,6 @@
 NAME = philosopher
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 
 HEADER = ./includes/philo.h
 

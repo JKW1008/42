@@ -6,24 +6,33 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 21:09:06 by kjung             #+#    #+#             */
-/*   Updated: 2024/10/17 16:55:01 by kjung            ###   ########.fr       */
+/*   Updated: 2024/10/25 19:20:57 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-int	ft_atoi(char *str)
+int    ft_atoi(const char *str)
 {
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 0;
-	while (str[i])
-	{
-		res *= 10;
-		res += str[i] - '0';
-		i++;
-	}
-	return (res);
+    long    result;
+    int     sign;
+    
+    result = 0;
+    sign = 1;
+    while (*str == ' ' || (*str >= 9 && *str <= 13))
+        str++;
+    if (*str == '-')
+        sign = -1;
+    if (*str == '-' || *str == '+')
+        str++;
+    while (*str >= '0' && *str <= '9')
+    {
+        result = result * 10 + (*str - '0');
+        if (result > INT_MAX && sign == 1)
+            return (-1);
+        if (result > ((long)INT_MAX + 1) && sign == -1)
+            return (-1);
+        str++;
+    }
+    return (sign * result);
 }
