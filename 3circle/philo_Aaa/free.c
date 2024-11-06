@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 15:49:15 by kjung             #+#    #+#             */
-/*   Updated: 2024/11/05 10:48:19 by kjung            ###   ########.fr       */
+/*   Created: 2024/11/04 18:52:48 by kjung             #+#    #+#             */
+/*   Updated: 2024/11/04 18:52:53 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo.h"
-#include <stdio.h>
+#include "philo.h"
 
-int	print_error(char *str)
+int	free_arg(t_arg *arg)
 {
-	ft_putstr(str, 1);
+	int	i;
+
+	if (arg->fork)
+	{
+		i = 0;
+		while (i < arg->philo_number)
+		{
+			pthread_mutex_destroy(&arg->fork[i]);
+			i++;
+		}
+		free(arg->fork);
+		arg->fork = NULL;
+	}
+	if (arg->philo)
+	{
+		free(arg->philo);
+		arg->philo = NULL;
+	}
+	pthread_mutex_destroy(&arg->print);
+	pthread_mutex_destroy(&arg->finish_mutex);
+	pthread_mutex_destroy(&arg->eat_mutex);
 	return (0);
-}
-
-void	print_status(t_philo *philo, char *str)
-{
-	pthread_mutex_lock(&philo->arg->print);
-	ft_putnbr(get_time() - philo->last_eat, 1);
-	ft_putstr(" ", 1);
-	ft_putnbr(philo->id, 1);
-	ft_putstr(" ", 1);
-	ft_putstr(str, 1);
-	ft_putstr("\n", 1);
-	pthread_mutex_unlock(&philo->arg->print);
 }

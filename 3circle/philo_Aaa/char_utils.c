@@ -5,49 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 15:49:57 by kjung             #+#    #+#             */
-/*   Updated: 2024/10/31 19:54:52 by kjung            ###   ########.fr       */
+/*   Created: 2024/11/04 17:41:01 by kjung             #+#    #+#             */
+/*   Updated: 2024/11/04 18:24:35 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo.h"
+#include "philo.h"
 
-void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-void	ft_putstr(char *str, int fd)
+int	ft_atoi(char *s)
 {
 	int	i;
+	int	res;
+	int neg;
 
 	i = 0;
-	if (!str)
-		return ;
-	while (str[i])
+	neg = 1;
+	res = 0;
+	while (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r'))
+		i++;
+	if (s[i] == '-' || s[i] == '+')
 	{
-		write(fd, &str[i], 1);
+		if (s[i] == '-')
+			neg = -1;
 		i++;
 	}
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		res = res * 10 + (s[i] - '0');
+		i++;
+	}
+	return (res * neg);
 }
 
-void	ft_putnbr(int n, int fd)
+int	ft_isdigit(char c)
 {
-	if (n < 0)
-	{
-		ft_putchar('-', fd);
-		n *= -1;
-	}
-	if (n == -2147483648)
-	{
-		ft_putchar('2', fd);
-		n = -(n % 1000000000);
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10, fd);
-		ft_putnbr(n % 10, fd);
-	}
-	else
-		ft_putchar(n + '0', fd);
+	if (c >= '0' && c <= '9')
+		return (0);
+	return (1);
 }

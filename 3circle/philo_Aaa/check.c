@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 17:12:22 by kjung             #+#    #+#             */
-/*   Updated: 2024/11/04 17:30:25 by kjung            ###   ########.fr       */
+/*   Created: 2024/11/04 17:22:21 by kjung             #+#    #+#             */
+/*   Updated: 2024/11/04 18:23:50 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	call_init_ft(t_arg *arg, char **av, int ac)
+int	check_input(char **av)
 {
-	if (!init_args(arg, av, ac))
-		return (0);
-	if (!init_philo(arg))
-		return (0);
-	if (!init_mutex(arg))
-		return (0);
-	return (1);
-}
+	int	i;
+	int	j;
 
-int	main(int ac, char **av)
-{
-	t_arg	arg;
-
-	if (ac == 5 || ac == 6)
+	i = 1;
+	while (av[i])
 	{
-		if (!check_input(av))
+		if (ft_atoi(av[i]) <= 0)
+		{
+			print_error("Input error : arguments must bigger then 0\n");
 			return (1);
-		if (!call_init_ft(&arg, av, ac))
-			return (1);
-		if (create_philo(&arg))
-			return (1);
-		call_chk(&arg);
+		}
+		j = 0;
+		while (av[i][j])
+		{
+			if (ft_isdigit(av[i][j]))
+			{
+				print_error("Input error : arguments must digit\n");
+				return (1);
+			}
+			j++;
+		}
+		i++;
 	}
-	else
-		print_error("Input Error : must input arumetns 5 or 6");
-}	
+	return (0);
+}

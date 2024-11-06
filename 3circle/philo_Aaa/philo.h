@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 17:26:01 by kjung             #+#    #+#             */
-/*   Updated: 2024/10/31 20:58:04 by kjung            ###   ########.fr       */
+/*   Created: 2024/11/04 16:41:57 by kjung             #+#    #+#             */
+/*   Updated: 2024/11/04 18:53:18 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
+#ifndef	PHILO_H
 # define PHILO_H
 
 # include <stdio.h>
@@ -49,36 +49,27 @@ typedef struct s_arg
 }	t_arg;
 
 //	char_utils.c
-void	ft_putstr(char *str, int fd);
-void	ft_putnbr(int n, int fd);
+int	ft_atoi(char *s);
+int	ft_isdigit(char c);
 
-//	check_args.c
-int		ft_atoi(char *str);
-int		is_digit(char c);
-int		check_input(char **av);
+//	check.c
+int	check_input(char **av);
 
-//	error.c
-int		print_error(char *str);
-void	print_status(t_philo *philo, char *str);
+//	get_time.c
+int	get_time(void);
+
+//	free.c
+int	free_arg(t_arg *arg);
 
 //	init.c
 int		init_args(t_arg *arg, char **av, int ac);
-int		init_philo(t_arg *arg);
 int		init_mutex(t_arg *arg);
+int		init_philo(t_arg *arg);
 
-//	philo_utils.c
-int		get_time(void);
-int		chk_done(t_philo *philo, int status);
-int		call_chk(t_arg *arg);
-int		free_arg(t_arg *arg);
+//	print.c
+void	ft_putchar(char c, int fd);
+void	ft_putstr(char *str, int fd);
+void	ft_putnbr(int n, int fd);
+int		print_error(char *str);
 
-//	philo.c
-int		create_philo(t_arg *args);
-
-//	philos_do.c
-void	take_a_fork(t_philo *philo);
-void	drop_fork(t_philo *philo);
-void	do_eat(t_philo *philo);
-void	do_sleep(t_philo *philo);
-void	*do_philos(void *args);
 #endif
