@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjung <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 19:51:32 by kjung             #+#    #+#             */
-/*   Updated: 2024/04/24 16:46:21 by kjung            ###   ########.fr       */
+/*   Updated: 2024/11/13 19:37:59 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -145,52 +141,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (result);
 }
 
-
-// char    *get_next_line(int fd)
-// {
-//     static char *result;
-//     char    a[BUFFER_SIZE + 1];
-//     char    *temp;
-//     char    *new_line;
-//     int i;
-//     int d;
-
-//     i = read(fd, a, BUFFER_SIZE);
-//     if (i <= 0)
-//         return (NULL);
-//     a[i] = '\0';
-//     if (!result)
-//         result = ft_strdup("");
-//     // while (i > 0)
-//     // {
-//     //     i = read(fd, a, BUFFER_SIZE);
-//     //     if (i == 0)
-//     //         return (result);
-//     //     result = ft_strjoin(result, a);
-//     //     d = ft_strchr(result, '\n');
-//     //     if (d > -1)
-//     //         break ;
-//     // }
-//     // temp = (char *)malloc(sizeof(char) * (d + 1));
-//     // ft_strlcpy(temp, result, d + 1);    // while ((line = get_next_line(fd)))
-    // {
-//     // new_line = ft_substr(result, d, ft_strlen(result));
-//     // free(result);
-//     // result = new_line;
-//     // return (temp);
-// }
-
-// void	program_done(int buff, char *result, char *temp)
-// {
-// 	if (buff == 0)
-// 	{
-// 		free(result);
-// 		free(temp);
-// 		*result = '\0';
-// 		*temp = '\0';
-// 	}
-// } kjung@c2r17s3  ~/Desktop/get_next_line  ./a.out 
-
 char    *get_next_line(int fd)
 {
     static char *result;
@@ -243,12 +193,14 @@ char    *get_next_line(int fd)
     }
 }
 
+#include <stdio.h>
+
 int main(void)
 {
     int fd;
-    char *line;
+    char *line; z
 
-    fd = open("hello.txt", O_RDONLY);
+    fd = open("sadf.txt", O_RDONLY);
     if (fd == -1)
     {
         printf("file open fail");
