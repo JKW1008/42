@@ -6,45 +6,14 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:32:27 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/04 18:39:35 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/07 22:38:02 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-static int	reset_mutex(t_args *args)
-{
-	int	i;
-
-	i = 0;
-	while (i < args->number)
-	{
-		if(pthread_mutex_init(&(args->forks[i]), NULL))
-		{
-			while (--i >= 0)
-				pthread_mutex_destroy(&(args->forks[i]));
-			free(args->forks);
-			free(args->philo);
-			return (1);
-		}
-	}
-	if (pthread_mutex_init(&(args->print_mutex), NULL))
-	{
-		i = 0;
-		while (i < args->number)
-			pthread_mutex_destroy(&(args->forks[i++]));
-		free(args->forks);
-		free(args->philo);
-		return (1);
-	}
-	return (0);
-}
-
 static int	init_args(int ac, char **av, t_args *args)
 {
-	int	i;
-
-	i = 0;
 	args->number = ft_atoi(av[1]);
 	args->time_to_die = ft_atoi(av[2]);
 	args->time_to_eat = ft_atoi(av[3]);
@@ -76,11 +45,16 @@ static int	init_philo(t_args *args)
 	while (i < args->number)
 	{
 		args->philo[i].id = i + 1;
-		args->philo[i].eat_count =0;
+		args->philo[i].eat_count = 0;
 		args->philo[i].last_eat_time = 0;
 		args->philo[i].args = args;
 		args->philo[i].left_fork = &(args->forks[i]);
-		args->philo[i].left_fork = &(args->forks[(i + 1) % args->number]);
+		args->philo[i].right_fork = &(args->forks[(i + 1) % args->number]);
+		if (pthread_mutex_init(&(args->philo[i].time_mutex), NULL))
+		{
+			cleanup_all_mutex(args, i);
+			return (1);
+		}
 		i++;
 	}
 	return (0);

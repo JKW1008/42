@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 21:49:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/04 18:42:05 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/07 22:17:00 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ typedef struct s_args
 	int				must_eat_cnt;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t eat_mutex;
 	int				is_dead;
 	struct s_philo	*philo;
+	long long		start_time;
+	pthread_t		monitor;
 } t_args;
 
 typedef	struct s_philo
@@ -39,13 +42,24 @@ typedef	struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	time_mutex;
 	long long		last_eat_time;
 	int				eat_count;
 	t_args			*args;
 } t_philo;
 
 
-int	ft_atoi(const char *str);
-int	init(int ac, char **av, t_args *args);
-
+int			ft_atoi(const char *str);
+int			init(int ac, char **av, t_args *args);
+long long	ft_gettime();
+void	ft_print_status(t_philo *philo, char *message);
+int	take_forks(t_philo *philo);
+int	reset_mutex(t_args *args);
+void	cleanup_all_mutex(t_args *args, int philo_count);
+int    eating(t_philo *philo);
+int	sleeping(t_philo *philo);
+void	*philo_routine(void *arg);
+void    *monitor_routine(void *arg);
+int	cleanup_thread(t_args *args);
+int	ft_create_philo(t_args *args);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 19:25:39 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/04 18:41:11 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/07 22:17:22 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ int	main(int ac, char **av)
 		{
 			printf("Error: init faild\n");
 			return (1);
-			
+		}
+		if (ft_create_philo(&args))
+		{
+			return (1);
 		}
 	}
 	return (0);
