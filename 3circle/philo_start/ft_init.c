@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:32:27 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/07 22:38:02 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/09 17:05:11 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ static int	init_args(int ac, char **av, t_args *args)
 
 static int	init_philo(t_args *args)
 {
-	int	i;
+	int			i;
+	long long	current_time;
 
 	i = 0;
 	while (i < args->number)
 	{
+		current_time = ft_gettime();
+		if (current_time == -1)
+			return (1);
 		args->philo[i].id = i + 1;
 		args->philo[i].eat_count = 0;
-		args->philo[i].last_eat_time = 0;
+		args->philo[i].last_eat_time = current_time;
 		args->philo[i].args = args;
 		args->philo[i].left_fork = &(args->forks[i]);
 		args->philo[i].right_fork = &(args->forks[(i + 1) % args->number]);

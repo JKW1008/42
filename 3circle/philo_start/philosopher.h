@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 21:49:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/07 22:17:00 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/09 17:59:31 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_args
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t eat_mutex;
+	pthread_mutex_t	dead_mutex;
 	int				is_dead;
 	struct s_philo	*philo;
 	long long		start_time;
@@ -62,4 +63,5 @@ void	*philo_routine(void *arg);
 void    *monitor_routine(void *arg);
 int	cleanup_thread(t_args *args);
 int	ft_create_philo(t_args *args);
+void	ft_usleep(int time);
 #endif

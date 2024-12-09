@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:54:17 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/07 22:10:55 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/09 19:38:08 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	cleanup_all_mutex(t_args *args, int philo_count)
 		pthread_mutex_destroy(&(args->philo[i++].time_mutex));
 	pthread_mutex_destroy(&(args->eat_mutex));
 	pthread_mutex_destroy(&(args->print_mutex));
+	pthread_mutex_destroy(&(args->dead_mutex));
 	i = 0;
 	while (i < args->number)
 		pthread_mutex_destroy(&(args->forks[i++]));
@@ -44,6 +45,12 @@ int	cleanup_thread(t_args *args)
 	int	i;
 
 	i = 0;
+	// while (i < args->number)
+	// {
+	// 	pthread_mutex_unlock(&args->forks[i]);
+	// 	i++;
+	// }
+	// i = 0;
 	while (i < args->number)
 	{
 		if (pthread_join(args->philo[i].thread, NULL))
@@ -53,4 +60,13 @@ int	cleanup_thread(t_args *args)
 	if (pthread_join(args->monitor, NULL))
 		return (1);
 	return (0);
+}
+
+void	ft_usleep(int time)
+{
+	long long	start_time;
+
+	start_time = ft_gettime();
+	while (ft_gettime() - start_time < time)
+		usleep(time / 10);
 }

@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 19:25:39 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/07 22:17:22 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/09 19:46:43 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,12 @@ int	main(int ac, char **av)
 		}
 		if (ft_create_philo(&args))
 		{
+			cleanup_thread(&args);
+			cleanup_all_mutex(&args, args.number);
 			return (1);
 		}
+		cleanup_thread(&args);
+		cleanup_all_mutex(&args, args.number);
 	}
 	return (0);
 }
