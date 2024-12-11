@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:55:43 by kjung             #+#    #+#             */
-/*   Updated: 2024/11/04 17:55:48 by kjung            ###   ########.fr       */
+/*   Created: 2024/12/10 16:59:21 by kjung             #+#    #+#             */
+/*   Updated: 2024/12/10 17:58:11 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../../includes/philosopher.h"
 
-int	get_time(void)
+static int	ft_isdigit(int c)
 {
-	struct timeval	time;
+	if (c >= 48 && c <= 57)
+		return (0);
+	return (1);
+}
 
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 - time.tv_sec / 1000);
+int	check_args(int ac, char **av)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (ft_isdigit(av[i][j]))
+				return (1);
+			j++;
+		}
+		if (ft_atoi(av[i]) < 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }

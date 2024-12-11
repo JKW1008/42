@@ -1,45 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   char_utils.c                                       :+:      :+:    :+:   */
+/*   ft_routine_sleep.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:41:01 by kjung             #+#    #+#             */
-/*   Updated: 2024/11/04 18:24:35 by kjung            ###   ########.fr       */
+/*   Created: 2024/12/07 21:57:11 by kjung             #+#    #+#             */
+/*   Updated: 2024/12/11 18:21:32 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../../includes/philosopher.h"
 
-int	ft_atoi(char *s)
+int	sleeping(t_philo *philo)
 {
-	int	i;
-	int	res;
-	int neg;
-
-	i = 0;
-	neg = 1;
-	res = 0;
-	while (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r'))
-		i++;
-	if (s[i] == '-' || s[i] == '+')
+	pthread_mutex_lock(&philo->args->dead_mutex);
+	if (philo->args->is_dead)
 	{
-		if (s[i] == '-')
-			neg = -1;
-		i++;
+		pthread_mutex_unlock(&philo->args->dead_mutex);
+		return (1);
 	}
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		res = res * 10 + (s[i] - '0');
-		i++;
-	}
-	return (res * neg);
-}
-
-int	ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (0);
-	return (1);
+	pthread_mutex_unlock(&philo->args->dead_mutex);
+	ft_print_status(philo, "is sleeping");
+	ft_usleep(philo->args->time_to_sleep);
+	return (0);
 }

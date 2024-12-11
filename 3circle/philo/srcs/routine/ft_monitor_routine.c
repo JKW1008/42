@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 22:06:24 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/10 17:22:34 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:19:36 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ static int	monitor_one_cycle(t_args *args)
 		check_all_ate(args, i++, &all_eat);
 	}
 	if (args->must_eat_cnt != -1 && all_eat)
-	{
+	{	
+		pthread_mutex_lock(&args->dead_mutex);
 		args->is_dead = 1;
+		pthread_mutex_unlock(&args->dead_mutex);
 		return (1);
 	}
 	return (0);

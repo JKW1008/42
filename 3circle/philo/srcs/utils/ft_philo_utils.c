@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:54:17 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/10 16:51:26 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/11 18:24:04 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	ft_usleep(int time)
 
 	start_time = ft_gettime();
 	while (ft_gettime() - start_time < time)
-		usleep(time / 10);
+		usleep(50);
 }
