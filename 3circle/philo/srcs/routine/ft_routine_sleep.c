@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:57:11 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/11 18:21:32 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/17 11:58:34 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	sleeping(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->args->dead_mutex);
 	ft_print_status(philo, "is sleeping");
-	ft_usleep(philo->args->time_to_sleep);
+	ft_usleep(philo->args->time_to_sleep, philo);
 	return (0);
 }

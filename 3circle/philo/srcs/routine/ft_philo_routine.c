@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:16:28 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/11 18:20:58 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/17 11:58:11 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	ft_print_status(philo, "is thinking");
 	if (philo->id % 2 == 0)
-		ft_usleep(10);
+		ft_usleep(10, philo);
 	pthread_mutex_lock(&philo->args->dead_mutex);
 	while (!philo->args->is_dead && \
 	(philo->args->must_eat_cnt == -1 || \

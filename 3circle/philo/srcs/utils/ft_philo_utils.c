@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:54:17 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/11 18:24:04 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/17 11:57:28 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,15 @@ int	cleanup_thread(t_args *args)
 	return (0);
 }
 
-void	ft_usleep(int time)
+void	ft_usleep(int time, t_philo *philo)
 {
 	long long	start_time;
 
 	start_time = ft_gettime();
 	while (ft_gettime() - start_time < time)
+	{
+		if (eating_die(philo))
+			return ;
 		usleep(50);
+	}
 }

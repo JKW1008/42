@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 21:49:42 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/11 18:20:24 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/17 11:57:45 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		*philo_routine(void *arg);
 void		*monitor_routine(void *arg);
 int			cleanup_thread(t_args *args);
 int			ft_create_philo(t_args *args);
-void		ft_usleep(int time);
+void		ft_usleep(int time, t_philo *philo);
 int			check_args(int ac, char **av);
 int			eating_die(t_philo *philo);
 #endif

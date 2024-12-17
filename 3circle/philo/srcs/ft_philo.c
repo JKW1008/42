@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:28:04 by kjung             #+#    #+#             */
-/*   Updated: 2024/12/11 18:20:49 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/17 11:58:03 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_create_philo(t_args *args)
 	if (args->number == 1)
 	{
 		ft_print_status(&args->philo[0], "has taken a fork");
-		ft_usleep(args->time_to_die);
+		ft_usleep(args->time_to_die, &args->philo[0]);
 		ft_print_status(&args->philo[0], "died");
 		return (0);
 	}
