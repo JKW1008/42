@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 19:51:32 by kjung             #+#    #+#             */
-/*   Updated: 2024/11/13 19:37:59 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/16 19:56:37 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ char    *get_next_line(int fd)
 int main(void)
 {
     int fd;
-    char *line; z
+    char *line; 
 
     fd = open("sadf.txt", O_RDONLY);
     if (fd == -1)
