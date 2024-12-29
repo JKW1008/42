@@ -6,7 +6,7 @@
 /*   By: kjung <kjung@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:44:20 by kjung             #+#    #+#             */
-/*   Updated: 2024/06/28 19:15:56 by kjung            ###   ########.fr       */
+/*   Updated: 2024/12/27 17:08:19 by kjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "Libft/libft.h"
 # include <limits.h>
-# include <stdio.h>
+# include <stdio.h> 
 
 typedef struct s_lst
 {
@@ -55,7 +55,7 @@ typedef struct s_recovery
 
 
 //	main.c
-void		print_stack(t_stack *stack);
+// void		print_stack(t_stack *stack);
 int			main(int argc, char *argv[]);
 
 //	ps_arr_utils.c
