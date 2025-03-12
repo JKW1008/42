@@ -76,6 +76,7 @@ int main(int ac, char **av, char **env)
     while (idx < ac)
     {
         ep = findEndPoint(idx, av);
+//      printf("%d %s %s\n", idx, av[idx], av[idx+ep]);
         if (ep == 0)
         {
             idx++;
